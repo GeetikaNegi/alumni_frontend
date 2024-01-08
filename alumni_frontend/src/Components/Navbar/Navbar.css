@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.nav_container{
+    
+    background-color:lightseagreen;
+    display: flex;
+    justify-content: center;
+
+}
+.nav_right{
+    display :flex;
+}
