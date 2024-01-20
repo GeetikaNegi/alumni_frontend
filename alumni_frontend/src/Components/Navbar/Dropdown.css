@@ -1,7 +1,6 @@
 .services-submenu{
     width: 10rem;
     position: absolute;
-    right: 450px;
     list-style: none;
     text-align: start;
     top: 140px;
@@ -12,7 +11,7 @@
     cursor: pointer;
 }
 
-.services-submenu li:hover{
+.services-submenu li a:hover{
     background: rgb(115, 6, 6);
 }
 
@@ -28,4 +27,5 @@
     color: white;
     padding: 16px;
 }
+
 

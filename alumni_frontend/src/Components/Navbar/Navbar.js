@@ -46,20 +46,6 @@ function Navbar() {
             </li>
       </ul>
       </nav>
-      <p>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-        <LoremIpsum/>
-      </p>
       </>
   )
 }
