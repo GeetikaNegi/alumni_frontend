@@ -1,0 +1,56 @@
+/* jobs-table.css */
+
+.jobs-table-container {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 1000px; /* Set a maximum width for responsiveness */
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.loading-indicator, .error-message {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Optional enhancements */
+
+.error-message {
+  color: red;
+}
+
+button {
+  border: none;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
