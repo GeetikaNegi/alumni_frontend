@@ -1,21 +1,67 @@
-.services-submenu{
-    width: 10rem;
+.abservices-submenu{
+    width: 9rem;
     position: absolute;
     list-style: none;
     text-align: start;
-    top: 140px;
+    top: 70px;
+    left: 37vw;
 }
 
-.services-submenu li{
+.abservices-submenu li{
     background: rgb(34, 2, 2);
     cursor: pointer;
 }
 
-.services-submenu li a:hover{
+.abservices-submenu li a:hover{
     background: rgb(115, 6, 6);
 }
 
-.services-submenu.clicked{
+.abservices-submenu.clicked{
+    display: none;
+}
+
+.crservices-submenu{
+    width: 7rem;
+    position: absolute;
+    list-style: none;
+    text-align: start;
+    top: 70px;
+    left: 54vw;
+}
+
+.crservices-submenu li{
+    background: rgb(34, 2, 2);
+    cursor: pointer;
+}
+
+.crservices-submenu li a:hover{
+    background: rgb(115, 6, 6);
+}
+
+.crservices-submenu.clicked{
+    display: none;
+}
+
+.cnservices-submenu{
+    width: 10rem;
+    position: absolute;
+    list-style: none;
+    text-align: start;
+    top: 70px;
+    left: 45vw;
+}
+
+.cnservices-submenu li{
+    background: rgb(34, 2, 2);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.cnservices-submenu li a:hover{
+    background: rgb(115, 6, 6);
+}
+
+.cnservices-submenu.clicked{
     display: none;
 }
 
