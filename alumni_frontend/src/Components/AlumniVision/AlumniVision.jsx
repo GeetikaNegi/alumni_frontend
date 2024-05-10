@@ -6,7 +6,7 @@ export default function AlumniVision() {
     <div className='alumni-vision-color center-align-txt'>
       <div>
         <h1> Alumni Platform Vision </h1>
-        <p className='width-70 '>
+        <p className='vision-txt '>
           A platform to bridge the gap of student - alumni interaction driven by
           the ideals and values that shall ensure the upliftment of both present
           and future alumnus.
@@ -26,7 +26,7 @@ export default function AlumniVision() {
         <div className='vision-card'>
           <span className='large-no'>100+</span>
           <span>Cities</span>
-          <button >View Alumni Map</button>
+          <button>View Alumni Map</button>
         </div>
         <div className='vision-card'>
           <span className='large-no'>100+</span>

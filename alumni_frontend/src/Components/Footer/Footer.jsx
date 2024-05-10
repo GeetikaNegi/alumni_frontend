@@ -9,10 +9,11 @@ import Youtube from "../../Assets/youtube.png";
 const Footer = () => {
   return (
     <div className='footer-container'>
-      <hr />
+      {/* <hr /> */}
+      <br />
       <div className='social-links'>
         <a href='https://github.com'>
-          <img src={twitter} alt='' />
+          <img src={twitter} alt='twitter' />
         </a>
         <a href='https://instagram.com'>
           <img src={Instagram} alt='instagram.png' />
@@ -21,10 +22,10 @@ const Footer = () => {
           <img src={LinkdIn} alt='Linkedin.png' />
         </a>
         <a href='https://facebook.com'>
-          <img src={Facebook} alt='Linkedin.png' />
+          <img src={Facebook} alt='facebook.png' />
         </a>
         <a href='https://youtube.com'>
-          <img src={Youtube} alt='Linkedin.png' />
+          <img src={Youtube} alt='youtube.png' />
         </a>
       </div>
       <div className='footer-headings'>
@@ -34,8 +35,7 @@ const Footer = () => {
         <span> | </span>
         <p>Contact</p>
         <span> | </span>
-        <p>Sitemap</p>
-        <span> | </span>
+        <p>Sitemap</p> <span> | </span>
         <p>Terms</p>
         <span> | </span>
         <p>Privacy</p>
