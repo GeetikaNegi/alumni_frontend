@@ -38,7 +38,7 @@ const Footer = () => {
         <span> | </span>
         <p>Terms</p>
         <span> | </span>
-        <p>Piracy</p>
+        <p>Privacy</p>
       </div>
     </div>
   );

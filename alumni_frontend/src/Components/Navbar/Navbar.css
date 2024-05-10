@@ -54,6 +54,7 @@ img{
     width: 100%;
     display:flex;
     transition: .3s;
+    border-radius: 50px;
 }
 
 img.sticky{
