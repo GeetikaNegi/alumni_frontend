@@ -1,6 +1,6 @@
 nav{
     height: 70px;
-    background: rgb(161, 110, 110);
+    background: var(--palleteblue);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,15 +37,16 @@ nav{
 
 .nav-item a{
     text-decoration: none;
-    color: white;
     font-size: 1.1rem;
     margin-right: 2rem;
     padding: 6px 16px;
     border-radius: 5px;
+    color: var(--secondlightest);
 }
 
 .nav-item a:hover{
-        background: rgb(34, 2, 2);
+        background: var(--thirdlightest);
+        color: black;
 }
 
 
@@ -63,9 +64,17 @@ img.sticky{
     z-index: 100;
 }
 
+#logo{
+    height:70px;
+    width: 100%;
+    display:flex;
+    transition: .3s;
+    border-radius:  50px;;
+}
+
 
 nav.sticky{
-    box-shadow: 0px 5px 10px rgba(0,0,0,.6);
+    box-shadow: var(--palleteblue);
     position:sticky;
     top:70px;
     z-index: 100;
@@ -84,4 +93,8 @@ nav.sticky{
     height: 80px;
     width: 80px;
     position:sticky;
+}
+
+.submenu-item{
+    color: black;
 }

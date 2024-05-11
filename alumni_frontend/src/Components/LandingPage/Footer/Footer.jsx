@@ -1,10 +1,10 @@
 import React from "react";
 import "./Footer.css";
-import twitter from "../../Assets/twitter.png";
-import Instagram from "../../Assets/instagram.png";
-import LinkdIn from "../../Assets/linkedin.png";
-import Facebook from "../../Assets/facebook.png";
-import Youtube from "../../Assets/youtube.png";
+import twitter from "../../../Assets/twitter.png";
+import Instagram from "../../../Assets/instagram.png";
+import LinkdIn from "../../../Assets/linkedin.png";
+import Facebook from "../../../Assets/facebook.png";
+import Youtube from "../../../Assets/youtube.png";
 
 const Footer = () => {
   return (

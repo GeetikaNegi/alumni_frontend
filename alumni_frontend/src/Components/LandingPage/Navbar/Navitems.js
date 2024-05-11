@@ -36,7 +36,7 @@ export const aboutdrop=[
     {
         id:1,
         title:'About Us',
-        path:'/Aboutus',
+        path:'/aboutus',
         cName:'submenu-item'
     },
     {
