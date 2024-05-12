@@ -23,7 +23,7 @@ function Navbar() {
   });
   return (
     <>
-    <img className={`${sticky? "sticky": ""}`} src="https://static.zollege.in/public/college_data/images/appImage/18083_IISEL_APP.jpg?tr=h-250,w-400,c-force" alt='Sorry'></img>
+    <img className={`${sticky? "sticky": ""}`} src="https://static.zollege.in/public/college_data/images/appImage/18083_IISEL_APP.jpg?tr=h-250,w-400,c-force" alt='cannotload image'></img>
       <nav className={`${sticky? "sticky": ""}`}>
       <Link  to="/" className="logo">
         <img id='logo' className={`${sticky? "sticky": ""}`} src={logoiise} alt='Sorry'/>
@@ -35,7 +35,7 @@ function Navbar() {
             <li key={2} className='nav-item'
             onMouseEnter={()=>setAboutdropdown(true)}
             onMouseLeave={()=>setAboutdropdown(false)}>
-              <Link to='/about'>About</Link>
+              <Link to='/Aboutus'>About</Link>
               {aboutdropdown && <Aboutdrop/>}
             </li>
             <li key={3} className='nav-item'

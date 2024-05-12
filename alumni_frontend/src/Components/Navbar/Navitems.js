@@ -8,7 +8,7 @@ export const navitems =[
     {
         id:2,
         title:'About',
-        path:'/about',
+        path:'/Aboutus',
         cName:'nav-item'
     },
     {
@@ -42,7 +42,7 @@ export const aboutdrop=[
     {
         id:2,
         title:'Our Team',
-        path:'/ourteam',
+        path:'/OurTeam',
         cName:'submenu-item'
     }
 ];
