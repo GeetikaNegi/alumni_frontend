@@ -1,47 +1,80 @@
 import React from "react";
 import "./Footer.css";
-import twitter from "../../../Assets/twitter.png";
-import Instagram from "../../../Assets/instagram.png";
-import LinkdIn from "../../../Assets/linkedin.png";
-import Facebook from "../../../Assets/facebook.png";
-import Youtube from "../../../Assets/youtube.png";
+import { Link } from "react-router-dom";
 
-const Footer = () => {
+function Footer() {
   return (
-    <div className='footer-container'>
-      <hr />
-      <div className='social-links'>
-        <a href='https://github.com'>
-          <img src={twitter} alt='' />
-        </a>
-        <a href='https://instagram.com'>
-          <img src={Instagram} alt='instagram.png' />
-        </a>
-        <a href='https://linkedin.com'>
-          <img src={LinkdIn} alt='Linkedin.png' />
-        </a>
-        <a href='https://facebook.com'>
-          <img src={Facebook} alt='Linkedin.png' />
-        </a>
-        <a href='https://youtube.com'>
-          <img src={Youtube} alt='Linkedin.png' />
-        </a>
+    <footer className='footer-container'>
+      <div>
+        <h4>IISE Alumni Connect</h4>
+
+        <div>
+          <p>
+            <em>
+              A platform to bridge the gap of student - alumni interaction
+              driven by the ideals and values that shall ensure the upliftment
+              of both present and future alumnus.
+            </em>
+          </p>
+        </div>
       </div>
-      <div className='footer-headings'>
-        <p>Home</p>
-        <span> | </span>
-        <p>About</p>
-        <span> | </span>
-        <p>Contact</p>
-        <span> | </span>
-        <p>Sitemap</p>
-        <span> | </span>
-        <p>Terms</p>
-        <span> | </span>
-        <p>Piracy</p>
+
+      <div>
+        <div className='footer-card'>
+          <h4>Quick Links</h4>
+
+          <div>
+            <ul>
+              <li>
+                &gt; <a href='/'>Home</a>
+              </li>
+              <li>
+                &gt; <a href='/Aboutus'>About us</a>
+              </li>
+              <li>
+                &gt; <a href='/connect'>Connect</a>
+              </li>
+              <li>
+                &gt; <a href='/career'> Career</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+      <div>
+        <div className='footer-card'>
+          <h4>Career</h4>
+
+          <div>
+            <ul>
+              <li>
+                &gt; <a href='/jobs'>Jobs</a>
+              </li>
+              <li>
+                &gt; <a href='/internships'>Internships</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className='footer-card'>
+          <h4>Connect</h4>
+
+          <div>
+            <ul>
+              <li>
+                &gt; <a href='/alumni-directory'>Alumni Directory</a>
+              </li>
+              <li>
+                &gt; <a href='invite-batchmate'>Invite Batchmate</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
-};
+}
 
 export default Footer;

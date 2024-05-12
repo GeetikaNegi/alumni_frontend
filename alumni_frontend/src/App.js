@@ -26,6 +26,7 @@ function App() {
         <Route path="/internship" element={<Login />} />
         <Route path="/gallery" element={<Gallery />} />
       </Routes>
+      
       <Footer/>
     </div>
   );
