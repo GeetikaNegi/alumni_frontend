@@ -35,7 +35,7 @@ function Navbar() {
             <li key={2} className='nav-item'
             onMouseEnter={()=>setAboutdropdown(true)}
             onMouseLeave={()=>setAboutdropdown(false)}>
-              <Link to='/about'>About</Link>
+              <Link to='/Aboutus'>About</Link>
               {aboutdropdown && <Aboutdrop/>}
             </li>
             <li key={3} className='nav-item'

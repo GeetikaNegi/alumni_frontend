@@ -29,8 +29,8 @@ export default function AlumniVision() {
           <button>View Alumni Map</button>
         </div>
         <div className='vision-card'>
-          <span className='large-no'>100+</span>
-          <span>Cities</span>
+          <span className='large-no'>PROFILE IMAGE</span>
+          <span>...</span>
           <button className=' alumni-vision-color'>View Profile</button>
         </div>
       </div>

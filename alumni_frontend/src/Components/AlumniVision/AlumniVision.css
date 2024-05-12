@@ -30,7 +30,7 @@
 }
 
 .vision-card>button {
-  border: 1px solid white;
+  border: 1px solid white ;
   font-size: 0.8rem;
   text-transform: uppercase;
   cursor: pointer;
@@ -39,8 +39,8 @@
   color: #DAC0A3;
   padding: 10px;
 }
-.vision-card>button:hover {
-  background-color: rgb(75, 74, 155);
+.vision-card>button:active {
+  background-color:#0b6485;
 
 }
 
