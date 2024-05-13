@@ -17,11 +17,12 @@
 .team-cards{
   display: flex;
   flex: wrap;
-  width: 40rem;
+  /* width: 40rem; */
   gap: 2rem;
-  width: initial;
+  /* width: initial; */
   justify-content: center;
-  padding: 20px;
+  align-items: center;
+  padding: 5vw;
   
 }
 .team-card{
@@ -38,6 +39,7 @@
   padding: 10px;
   background-color: var(--secondlightest);
   transition: background-color 1s linear;
+  cursor: pointer;
 }
 
 
@@ -113,6 +115,9 @@ display: flex;
 @media (max-width:600px){
   .left-panel{
     width: 100%;
+  }
+  .team-cards{
+    flex-direction: column;
   }
   .right-inner-panel{
     display: none;

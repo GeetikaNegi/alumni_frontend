@@ -23,7 +23,7 @@ function Navbar() {
   });
   return (
     <>
-    <img className={`${sticky? "sticky": ""}`} src={top} alt='Sorry'></img>
+    <img className={`${sticky? "sticky": ""}`} id='top-img' src={top} alt='Sorry'></img>
       <nav className={`${sticky? "sticky": ""}`}>
       <Link  to="/" className="logo">
         <img id='logo' className={`${sticky? "sticky": ""}`} src={logoiise} alt='Sorry'/>

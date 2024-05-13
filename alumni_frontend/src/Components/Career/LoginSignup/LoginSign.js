@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './LoginSign.css'
 
 function LoginSign() {
-    const [action,setAction]=useState("Sign Up");
+    const [action,setAction]=useState("Login");
   return (
     <form>
     <div className='container'>

@@ -44,7 +44,11 @@
 @media(max-width:600px){
   .footer-container {
     flex-direction: column;
-    padding-left: 5vw;
+    padding-left: 10vw;
+    gap: 0;
+  }
+  .footer-card{
+    /* padding-left: 5vw; */
   }
     
 }

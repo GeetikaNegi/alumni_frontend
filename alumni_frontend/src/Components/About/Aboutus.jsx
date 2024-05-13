@@ -10,7 +10,7 @@ function Aboutus() {
       <div className='left'>
         <h1>What are we doing !</h1>
         <p>
-          IISE, in entirety, is committed to identifying young people with
+          IISE , in entirety, is committed to identifying young people with
           professional and entrepreneurial aspirations, talents and
           determination and trigger them off to become excellent inspirational
           leaders in their chosen pursuits by developing in them skills,

@@ -1,13 +1,12 @@
 .about-container{
   background-color:var(--lightest);/* #FFE4E1;*/
   font-family: 'Roboto', sans-serif;
-  color: var(--palleteblue);
 
 }
 
 
 .left{
-  padding: 20px;
+  padding: 2vw;
   width: 95%;
 }
 
@@ -33,7 +32,7 @@
   display: flex;
   gap: 2rem;
   justify-content: center;
-  padding: 50px;
+  padding: 5vw  ;
 
 }
 
@@ -78,6 +77,7 @@
 
  @media(max-width:600px){
 
+ 
   .left h1{
     font-size: 7vw;
   }
