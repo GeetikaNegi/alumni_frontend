@@ -24,21 +24,21 @@ function Aboutus() {
         </p>
       </div>
       <div className='cards'>
-        <div className='card'>
+        <div className='card card-txt-style'>
           <h1>Connect</h1>
           <img src={connect} alt='' className='card-img ' />
           <span className='sh-1'>Past</span>
           <span className='sh-2'>Present</span>
           <span className='sh-3'>Future</span>
         </div>
-        <div className='card' id='mid-card'>
+        <div className='card card-txt-style' id='mid-card'>
           <h1>Communicate</h1>
           <img src={communincate} alt='' className='card-img' />
           <span className='sh-1'>Tradition</span>
           <span className='sh-2'>Information</span>
           <span className='sh-3'>Experience</span>
         </div>
-        <div className='card'>
+        <div className='card card-txt-style padding-2vw'>
           <h1>Collaborate</h1>
           <img src={collaborate} alt='' className='card-img' />
           <span className='sh-1'>Career Development</span>
@@ -46,7 +46,7 @@ function Aboutus() {
           <span className='sh-3'>social uplifment</span>
         </div>
       </div>
-      <p className='padding-5vw'>
+      <p className='padding-2vw'>
         <strong>&quot; </strong>
         <em>
           Networking is a key activity that is not only fun, but also critical

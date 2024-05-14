@@ -7,7 +7,6 @@ function Footer() {
     <footer className='footer-container'>
       <div>
         <h4>IISE Alumni Connect</h4>
-
         <div>
           <p>
             <em>
