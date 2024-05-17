@@ -1,0 +1,27 @@
+.alumniList-cards {
+  display: flex;
+  gap: .3vw;
+  justify-content: space-between;
+  padding: 1vw;
+  width: 19vw;
+}
+
+.alumniList-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  
+  border-radius: 2px;
+  border: 1px solid var(--palleteblue);
+}
+
+.smaller{
+  font-size: 1.5vw;
+}
+
+.alumniList-card img {
+  height: 12vw;
+  width: 19vw;
+  border-radius: 5%;
+  background-color: #fff;
+}

@@ -1,47 +1,43 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top:  2vw;
-    margin-bottom: 2vw;
+    gap: 3vw;
     background: var(--secondlightest);
     padding-top: 30px;
-    width: 60vw;
+    width: 90%;
     border: 2px solid black;
-    box-shadow: 0px 0px 25px  black
-
+    box-shadow: 0px 0px 25px black
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1vw;
     width: 100%;
-    margin-top: 3vw;
 }
 
-.text{
+.text {
     color: var(--palleteblue);
     font-size: 5vw;
     font-weight: 700;
 }
 
-.underline{
+.underline {
     width: 6vw;
     height: .6vw;
     background: var(--palleteblue);
     border-radius: 6px;
 }
 
-.inputs{
-    margin-top: 5vw;
+.inputs {
     display: flex;
     flex-direction: column;
     gap: 2vw;
 }
 
-.input{
+.input {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,7 +48,7 @@
     border-radius: 6px; */
 }
 
-.input input{
+.input input {
     height: 5vw;
     width: 40vw;
     background: white;
@@ -62,31 +58,32 @@
     padding-left: 1vw;
     font-size: 1.9vw;
 }
+
 input:focus-visible {
     outline-style: solid;
-    outline-color:var(--thirdlightest) ;
+    outline-color: var(--thirdlightest);
     outline-width: 2px;
 }
 
-.forget-pass{
+.forget-pass {
     padding-left: 7vw;
-    margin-top: 3vw;
     color: black;
     font-size: 1.8vw;
 }
 
-.forget-pass span{
+.forget-pass span {
     color: rgb(169, 77, 219);
     cursor: pointer;
 }
 
-.submit-container{
+.submit-container {
     display: flex;
     gap: 3vw;
-    margin: 6vw auto;
+    justify-content: center;
+    margin: 1vw;
 }
 
-.submit{
+.submit {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -100,7 +97,7 @@ input:focus-visible {
     cursor: pointer;
 }
 
-.submit-gray{
+.submit-gray {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,13 +112,13 @@ input:focus-visible {
 }
 
 
-.innput{
+.innput {
     gap: 3vw;
     display: flex;
     flex-direction: column;
 }
 
-.list{
+.list {
     font-size: 2vw;
     display: flex;
     align-items: center;
@@ -132,4 +129,27 @@ input:focus-visible {
     border-radius: 6px;
     padding-left: 1vw;
     color: rgba(128, 128, 128, 1);
+}
+
+@media (max-width:600px){
+    .container{
+        width: 70%;
+        height: 85%;
+        gap: 10vw;
+    }
+    .text {
+        font-size: 9vw;
+        
+    }
+    .innput{
+        gap: 4vw;
+    }
+.input input {
+    height: 7vw;
+    
+    font-size: 3.2vw;
+}
+.forget-pass{
+    font-size: 3vw;
+}
 }

@@ -1,0 +1,36 @@
+.invite-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vw;
+  padding: 1vw 0;
+   
+}
+
+
+.invite-header{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+.gradient-bg{
+  background-image: linear-gradient(37deg, var(--secondlightest), 74%, #12425f9c);
+}
+
+.invite-header img{
+  height: 15vw;
+  border-radius: 50%;
+}
+
+.invite-btns{
+  display: flex;
+  gap: 2vw;
+  flex-wrap: wrap;
+  
+  
+}
+.invite-icons{
+  height: 4vw;
+}
+

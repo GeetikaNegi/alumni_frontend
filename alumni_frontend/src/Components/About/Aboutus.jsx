@@ -46,6 +46,7 @@ function Aboutus() {
           <span className='sh-3'>social uplifment</span>
         </div>
       </div>
+
       <p className='padding-2vw'>
         <strong>&quot; </strong>
         <em>

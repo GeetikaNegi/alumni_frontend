@@ -17,9 +17,12 @@ export const selectCollege = [
 ];
 
 export const selectDept = [
-  { name: "MANAGEMENT", count: 3 },
-  { name: "IT", count: 5 },
-  { name: "ARTS", count: 2 },
+  { name: "MCA", count: 3 },
+  { name: "MBA", count: 5 },
+  { name: "BCA", count: 2 },
+  { name: "BCOM", count: 2 },
+  { name: "BBA", count: 2 },
+  { name: "BJMC", count: 2 },
 ];
 
 export const alumniData = [
