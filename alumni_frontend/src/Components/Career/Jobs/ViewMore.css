@@ -1,0 +1,26 @@
+.viewmore-container{
+  /* display: flex; */
+  gap: 2vw;
+  margin: 10px auto;
+border: 2px solid red;
+padding: 2vw;
+color: var(--palleteblue);
+background-color: var(--lightest);
+}
+
+.job-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.job-header-inner{
+  display: flex;
+  flex-direction: column;
+}
+
+#job-subheader{
+  display: flex;
+  gap: 4vw;
+  font-size: 20px;
+  font-weight: 600;
+}

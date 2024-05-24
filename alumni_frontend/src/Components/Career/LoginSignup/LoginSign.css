@@ -1,155 +1,103 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    gap: 3vw;
-    background: var(--secondlightest);
-    padding-top: 30px;
-    width: 90%;
-    border: 2px solid black;
-    box-shadow: 0px 0px 25px black
+.login-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  text-align: center;
+}
+.login-form {
+  display: flex;
+  
+  flex-direction: column;
+  gap: 2vw;
+  padding: 2vw;
+  align-items: center;
 }
 
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1vw;
-    width: 100%;
+.login-form div {
+  display: flex;
+  gap: 3vw;
+width: fit-content;
+  justify-content: center;
+  text-align: center;
 }
 
-.text {
-    color: var(--palleteblue);
-    font-size: 5vw;
-    font-weight: 700;
+.login-container div label {
+    height: 3vw;
+    padding: 0.5vw;
+    font-size: 20px;
+    margin-right: 15px;
+    width: 10vw;
+}
+.login-container div input {
+  height: 3vw;
+  padding: 0.5vw;
+  font-size: 2vw;
+  box-shadow: 0px 0px 5px var(--palleteblue);
 }
 
-.underline {
-    width: 6vw;
-    height: .6vw;
-    background: var(--palleteblue);
-    border-radius: 6px;
+.login-form button {
+  width: 20vw;
+  font-size: 2vw;
+  font-weight: 600;
+  background-color: var(--lightest);
+  border-radius: 5px;
+  padding: 5px 0px;
+  color: var(--palleteblue);
+  background: linear-gradient(
+      to left,
+      rgba(128, 128, 128, 0.233) 50%,
+      var(--secondlightest) 50%
+    )
+    right;
+  background-size: 200% 100%;
+  transition: background-color 0.5s ease;
+}
+.login-form button:hover {
+  background-position: left;
 }
 
-.inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 2vw;
+.login-form button:active {
+  border: 2px solid gray;
 }
 
-.input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* margin: auto;
-    width: 48vw;
-    height: 8vw;
-    background: white;
-    border-radius: 6px; */
+#forgot-pass {
+  cursor: pointer;
 }
 
-.input input {
-    height: 5vw;
-    width: 40vw;
-    background: white;
-    border: none;
-    outline: none;
-    color: black;
-    padding-left: 1vw;
-    font-size: 1.9vw;
+#register {
+  text-decoration: none;
+  color: var(--palleteblue);
+  font-weight: 600;
 }
 
-input:focus-visible {
-    outline-style: solid;
-    outline-color: var(--thirdlightest);
-    outline-width: 2px;
-}
+@media  (max-width:600px){
 
-.forget-pass {
-    padding-left: 7vw;
-    color: black;
-    font-size: 1.8vw;
-}
-
-.forget-pass span {
-    color: rgb(169, 77, 219);
-    cursor: pointer;
-}
-
-.submit-container {
-    display: flex;
-    gap: 3vw;
-    justify-content: center;
-    margin: 1vw;
-}
-
-.submit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22vw;
-    height: 5.5vw;
-    color: white;
-    background-color: var(--palleteblue);
-    border-radius: 50px;
-    font-size: 1.9vw;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.submit-gray {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 22vw;
-    height: 5.5vw;
-    color: white;
-    background-color: rgba(161, 159, 159, 0.777);
-    border-radius: 50px;
-    font-size: 2vw;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-
-.innput {
-    gap: 3vw;
-    display: flex;
-    flex-direction: column;
-}
-
-.list {
-    font-size: 2vw;
-    display: flex;
-    align-items: center;
-    margin: auto;
-    width: 42vw;
-    height: 5vw;
-    background: white;
-    border-radius: 6px;
-    padding-left: 1vw;
-    color: rgba(128, 128, 128, 1);
-}
-
-@media (max-width:600px){
-    .container{
-        width: 70%;
-        height: 85%;
-        gap: 10vw;
+    .login-form{
+       gap: 20px;
+       font-size: 10px;
     }
-    .text {
-        font-size: 9vw;
-        
+    .login-form button{
+        font-size: 15px;
     }
-    .innput{
-        gap: 4vw;
-    }
-.input input {
-    height: 7vw;
-    
-    font-size: 3.2vw;
-}
-.forget-pass{
-    font-size: 3vw;
-}
+        .login-form div {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+           
+        }
+    .login-container div label {
+            height: 16px;
+                /* padding: 5px; */
+                font-size: 15px;
+                /* margin-right: 15px; */
+                width: 105px;
+        }
+        .login-container div input {
+            height: 16px;
+            padding: 0.5vw;
+            font-size: 12px;
+            width: 200px;
+
+            box-shadow: 0px 0px 5px var(--palleteblue);
+        }
 }

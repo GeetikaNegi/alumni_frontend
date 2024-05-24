@@ -1,0 +1,161 @@
+.opportunity-container {
+  display: flex;
+  /* Make the container a flex container */
+  flex-direction: column;
+  /* Arrange elements vertically by default */
+  align-items: center;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background: var(--secondlightest);
+  color: #0c6892;
+  border-radius: 4px;
+  width: 90%;
+  gap: 3vw;
+  box-shadow: 0px 0px 20px var(--palleteblue);
+
+  font-weight: 600;
+}
+
+#post-header {
+  font-size: 3.5vw;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--palleteblue);
+  /* Center the heading text */
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  /* Allow form groups to wrap on smaller screens */
+}
+
+label {
+ width: 12vw;
+  /* Add some margin between label and input */
+}
+
+.form-group input,
+select {
+  flex: 1;
+  
+  /* Allow inputs to expand to fill remaining space */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-right: 10px;
+  /* Add some margin between form elements */
+}
+
+input#deadline{
+  width: 20vw;
+}
+
+input[type="checkbox"] {
+  /* Style checkbox differently */
+  margin-right: 10px;
+}
+
+#companyName,#title{
+  flex-grow: 0.4;
+}
+
+
+#post-job {
+background-color: #102C57;
+  color: #DAC0A3;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  font-size: 2vw;
+  /* Make button full width */
+}
+
+#post-job:active {
+  background-color: #4577a0; 
+}
+
+.horizontal {
+  /* New style for horizontal layout sections */
+  display: flex;
+  justify-content: space-between;
+  /* Distribute horizontal elements evenly */
+  width: 100%;
+  /* Make horizontal sections take up full width */
+}
+
+.description-container {
+  flex: 1;
+  /* Allow description container to fill available space */
+  margin-top: 20px;
+  /* Add some margin above description */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.description-container textarea {
+  width: 100%;
+  /* Make textareas full width */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+/* Media queries for mobile responsiveness */
+
+@media only screen and (max-width: 768px) {
+  .opportunity-container{
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+  }
+  .form-group {
+    /* Adjust layout for smaller screens */
+    flex-direction: column;
+            gap: 10px
+    /* Stack form elements vertically */
+  }
+
+  #post-header{
+    font-size: 7.5vw;
+  }
+
+    .form-group label {
+    /* Increase label width on mobile */
+    flex: 0 0 100%;
+    width: 52vw;
+    /* Labels take full width */
+    margin-bottom: 5px;
+    margin-left: 10px;
+    /* Add some margin between label and input */
+  }
+
+    .form-group input,
+  select {
+    margin-right: 5px;
+    margin-left: 10px;
+    /* Remove margin between form elements on mobile */
+  }
+    input#deadline {
+      width: 37vw;
+    }
+
+  .horizontal {
+    /* Remove horizontal layout on mobile */
+    display: flex;
+    flex-direction: column;
+  }
+
+    .form-container button {
+    font-size: 20px;
+    }
+}

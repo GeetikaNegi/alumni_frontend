@@ -1,31 +1,32 @@
 /* jobs-table.css */
 
 .jobs-table-container {
-  margin: 20px auto;
+  margin: 50px auto;
   width: 80%;
   max-width: 1000px; /* Set a maximum width for responsiveness */
 }
 
-table {
+.jobs-table {
   border-collapse: collapse;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  color: #103c57;
 }
 
-th, td {
+.jobs-table th , td {
   padding: 8px;
   text-align: left;
   border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: antiquewhite;
 }
 
-th {
+.jobs-table th {
   background-color: #f2f2f2;
   font-weight: bold;
 }
 
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
 
 .loading-indicator, .error-message {
   text-align: center;
@@ -42,7 +43,7 @@ tr:nth-child(even) {
   color: red;
 }
 
-button {
+.jobs-table button {
   border: none;
   padding: 8px 16px;
   background-color: #4CAF50;
@@ -51,6 +52,6 @@ button {
   border-radius: 4px;
 }
 
-button:hover {
+.jobs-table button:hover {
   background-color: #3e8e41;
 }

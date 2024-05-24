@@ -1,0 +1,3 @@
+const validateMobile=(mobile)=>{
+  // 
+}

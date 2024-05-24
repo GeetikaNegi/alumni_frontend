@@ -1,0 +1,62 @@
+.signup-container{
+  margin-left: 2vw;
+  padding: 2vw 8vw;
+  width: 80%;
+  border: 1px solid black;
+  
+  background-color: rgba(128, 128, 128, 0.233);
+  box-shadow: 0px 0px 15px #185b83;
+  color: var(--palleteblue);
+}
+
+.signup-header{
+  font-size: 3vw;
+}
+
+.form-container form{
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+    text-align: center;
+}
+
+.form-container label {
+  font-weight: 600;
+}
+
+.form-container  input{
+  box-shadow: 0px 0px 5px var(--palleteblue);
+}
+
+.form-container button{
+  background-color: var(--palleteblue);
+  font-size: 2vw;
+  font-style: oblique;
+  color: var(--lightest);
+}
+
+.input-container{
+  display: flex;
+  width: 100%;
+}
+
+#enroll-no{
+  flex-grow: 0.382;  
+}
+
+@media (max-width:600px){
+  .signup-header{
+    font-size: 20px;
+  }
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+      
+    }
+    #joining-date,#completion-date{
+      width: 250px;
+    }
+    
+}

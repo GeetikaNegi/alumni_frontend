@@ -10,9 +10,12 @@ import CollegeDirectory from "./Components/Connect/AlumniDirectory/CollegeDirect
 import LoginSign from "./Components/Career/LoginSignup/LoginSign";
 import Gallery from "./Components/Gallery/Gallery";
 import MyPopup from "./Components/Popup/MyPopup";
-import AlumniProfile from "./Components/Connect/AlumniDirectory/AlumniProfile";
 import { useState } from "react";
-
+import OpportunityForm from "./Components/Career/Jobs/OpportunityForm";
+import Signup from "./Components/Career/LoginSignup/Signup";
+import Showjobs from "./Components/Career/Jobs/Showjobs";
+import ForgotPassword from "./Components/Career/LoginSignup/PasswordForgot";
+import Internship from "./Components/Career/Internship";
 function App() {
   const [viewProfile, setViewProfile] = useState(false);
 
@@ -29,14 +32,10 @@ function App() {
         <Route path='/ourteam' element={<Ourteam />} />
         <Route path='/invitebatchmate' element={<Batchmate />} />
         <Route path='/alumnidirectory' element={<CollegeDirectory />} />
-        <Route
-          path='/jobs'
-          element={
-            <MyPopup component={<LoginSign />} onClose={handleClosePopup} />
-          }
-        />
-        <Route path='/internship' element={<LoginSign />} />
-        <Route path='/gallery' element={<AlumniProfile />} />
+        <Route path='/jobs' element={<Showjobs />} />
+        <Route path='/internship' element={<Internship />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/gallery' element={<ForgotPassword />} />
       </Routes>
 
       <Footer />

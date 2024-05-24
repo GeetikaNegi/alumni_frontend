@@ -34,7 +34,7 @@ const MyPopup = (props) => {
                   onClick={togglePopup}
                 />
               </span>
-              {props.component}
+              <span className='component'>{props.component}</span>
             </div>
           </div>
         </>

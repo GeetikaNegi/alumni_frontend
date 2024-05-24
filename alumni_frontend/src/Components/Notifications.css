@@ -1,0 +1,5 @@
+.notify-basic{
+  background-image: linear-gradient(37deg, var(--secondlightest), 74%, #12425f9c);
+  color: var(--palleteblue);
+  border-radius: 5px;
+}
