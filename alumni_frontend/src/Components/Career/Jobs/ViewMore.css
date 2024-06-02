@@ -2,11 +2,10 @@
   /* display: flex; */
   gap: 2vw;
   margin: 10px auto;
-border: 2px solid red;
+border: 2px solid rgb(15, 12, 12);
 padding: 2vw;
 color: var(--palleteblue);
-background-color: var(--lightest);
-}
+background-image: linear-gradient(217deg, #103c57a8, 10%, white);}
 
 .job-header{
   display: flex;
@@ -16,6 +15,7 @@ background-color: var(--lightest);
 .job-header-inner{
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 #job-subheader{
@@ -23,4 +23,36 @@ background-color: var(--lightest);
   gap: 4vw;
   font-size: 20px;
   font-weight: 600;
+}
+
+.alumni-details{
+  margin-top:  1vw ;
+  padding: 1vw;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+ #job-position{
+  color: #F4511E;
+}
+
+
+.alumni-details > #alumni-details-name{
+  color : #F4511E;
+  font-size: 3vw;
+  font-weight: 700;
+}
+
+.alumni-details #whatsapp-img{
+  height: 4vw;
+  width: 4vw;
+}
+.alumni-details .display-flex >span{
+
+  font-size: 3vw;
+  font-weight: 500;
+}
+
+#alumni-details-svg{
+  height: 20px;
 }

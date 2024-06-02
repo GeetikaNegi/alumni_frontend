@@ -1,18 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Directory.css";
 import { useState } from "react";
 import { selectYear } from "../../../Data/YearBook";
 import leftArrow from "../../../Assets/svgs/left-arrow.svg";
+import axios from "axios";
 import DepartmentDirectory from "./DepartmentDirectory";
 import CollegeDirectory from "./CollegeDirectory";
 
-function Directory() {
+function Directory(props) {
   const [isDeptActive, setIsDeptActive] = useState(false);
   const [back, setBack] = useState(false);
+  const [selectedYear, setSelectedYear] = useState(null);
+  const [yearData, setYearData] = useState([
+    {
+      count: "",
+      date_of_joining: "",
+    },
+  ]);
 
-  const handleClickOnYear = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/alumni/get-yearMember",
+          {
+            params: {
+              college_no: props.data,
+            },
+          }
+        );
+        console.log(response.data);
+        setYearData(response.data.data);
+        console.log(yearData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleClickOnYear = (value) => {
+    setSelectedYear(value);
     setIsDeptActive(true);
   };
+  console.log(`count ${props.data}`);
 
   const handleBackButton = () => {
     setBack(true);
@@ -20,11 +51,11 @@ function Directory() {
   };
 
   if (isDeptActive) {
-    return <DepartmentDirectory data={`this is my data`} />;
+    return <DepartmentDirectory college_no={props.data} year={selectedYear} />;
   }
 
   if (back) {
-    return <CollegeDirectory data={`this is my data`} />;
+    return <CollegeDirectory />;
   }
 
   return (
@@ -33,7 +64,7 @@ function Directory() {
         <span>Year Book</span>
         <span>IISE Group of Institutions</span>
       </div>
-      <div id='view-batch-btn' className="display-flex">
+      <div id='view-batch-btn' className='display-flex'>
         <img
           src={leftArrow}
           alt='leftarrow'
@@ -44,13 +75,15 @@ function Directory() {
         <button className='dir-container'>MY BATCHMATES</button>
       </div>
       <div className='cards-container'>
-        {selectYear.map((member, index) => (
+        {yearData.map((member, index) => (
           <div
             key={index}
             className='cards card  card-txt-style dir-cards-bg'
-            onClick={handleClickOnYear}
+            onClick={() => {
+              handleClickOnYear(member.date_of_joining);
+            }}
           >
-            <span>{member.year}</span>
+            <span>{member.date_of_joining}</span>
             <span>Total Member : {member.count}</span>
           </div>
         ))}

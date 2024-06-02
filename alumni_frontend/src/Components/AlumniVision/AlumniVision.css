@@ -29,7 +29,7 @@
 
 }
 
-.vision-card>button {
+.alumni-vision-card-btn {
   border: 1px solid white ;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -44,9 +44,18 @@
 
 }
 
+.link-decoration{
+  text-decoration: none;
+  color: white;
+}
+
 
 .large-no{
-  font-size: 3rem;
+  font-size: 4rem;
+}
+
+#alumnivision-profile-pic{
+  height: 105px;
 }
 
 

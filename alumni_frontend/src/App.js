@@ -7,15 +7,14 @@ import Aboutus from "./Components/About/Aboutus";
 import Ourteam from "./Components/About/Ourteam";
 import Batchmate from "./Components/Connect/Batchmate";
 import CollegeDirectory from "./Components/Connect/AlumniDirectory/CollegeDirectory";
-import LoginSign from "./Components/Career/LoginSignup/LoginSign";
 import Gallery from "./Components/Gallery/Gallery";
-import MyPopup from "./Components/Popup/MyPopup";
 import { useState } from "react";
 import OpportunityForm from "./Components/Career/Jobs/OpportunityForm";
-import Signup from "./Components/Career/LoginSignup/Signup";
 import Showjobs from "./Components/Career/Jobs/Showjobs";
-import ForgotPassword from "./Components/Career/LoginSignup/PasswordForgot";
-import Internship from "./Components/Career/Internship";
+import Internship from "./Components/Career/Jobs/Internship";
+import MyBatchmate from "./Components/Connect/AlumniDirectory/MyBatchmate";
+import UpdateProfileHome from "./Components/RegisterLogin/UpdateProfile/UpdateProfileHome";
+import Register from "./Components/RegisterLogin/Registration/Register";
 function App() {
   const [viewProfile, setViewProfile] = useState(false);
 
@@ -34,8 +33,13 @@ function App() {
         <Route path='/alumnidirectory' element={<CollegeDirectory />} />
         <Route path='/jobs' element={<Showjobs />} />
         <Route path='/internship' element={<Internship />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/gallery' element={<ForgotPassword />} />
+
+        <Route path='/gallery' element={<UpdateProfileHome />} />
+
+        <Route path='/post-opportunity' element={<OpportunityForm />} />
+        <Route path='/my-upload' element={<uploadPic />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/my-batchmate' element={<MyBatchmate />} />
       </Routes>
 
       <Footer />

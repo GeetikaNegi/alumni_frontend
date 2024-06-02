@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import MyPopup from "../../Popup/MyPopup";
+import { useNavigate } from "react-router-dom";
+import MyPopup from "../Popup/MyPopup";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import ForgotPassword from "./PasswordForgot";
+import ForgotPassword from "../RegisterLogin/PasswordForgot";
 import "./LoginSign.css";
-import Home from "../../Home";
+import Home from "../Home";
 
 function LoginSign() {
   const [cookies, setCookie] = useCookies(["myToken"]);
@@ -15,6 +16,7 @@ function LoginSign() {
     userId: "",
     password: "",
   });
+  const navigate = useNavigate();
   const [loginSuccess, setLoginSuccess] = useState(false);
   // const [action, setAction] = useState("Login");
 
@@ -29,28 +31,20 @@ function LoginSign() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Get the input value
-
     const pattern1 = /^^[a-zA-Z0-9_]+[@][a-z]+[/.][a-z]{2,3}|^[6789]\d{9}$"/;
-    // First pattern
     const pattern2 = /^[6789]\d{9}$/;
-    // Second pattern
 
     if (pattern1.test(loginBody.userId) || pattern2.test(loginBody.userId)) {
-      // Valid input
-      // Handle submission or other logic
       const toastId = toast.loading("Getting You In !", {
         position: `bottom-right`,
         duration: 4000,
       });
-      console.log(loginBody);
       try {
         const response = await axios.post(
           "http://localhost:8080/api/v1/alumni/login",
           loginBody
         );
 
-        // console.log(response.data);
         if (response.data.status.success) {
           toast.success(` ${response.data.status.message}`, {
             id: toastId,
@@ -60,11 +54,9 @@ function LoginSign() {
           setCookie(
             "accessToken",
             response.data.data.token,
-            { expires: new Date(Date.now() + 120000) },
+            { expires: new Date(Date.now() + 1200000) },
             { path: "/" }
           );
-
-          toggleSuccess();
 
           // console.log(`token ${response.data.data.token}`);
         } else {
@@ -83,8 +75,6 @@ function LoginSign() {
           duration: 4000,
         });
       }
-
-      console.log("hello");
     } else {
       // Invalid input
       // Display an error message or take appropriate action
@@ -93,6 +83,7 @@ function LoginSign() {
         duration: 4000,
       });
     }
+    navigate("/");
   };
 
   const handleChange = (event) => {
@@ -110,7 +101,6 @@ function LoginSign() {
 
   return (
     <div className='login-container signup-container '>
-      {console.log(`tis is ${loginSuccess}`)}
       {loginSuccess && <Home />}
       <h1 className='signup-header'>Login To Alumni Connect</h1>
       <form onSubmit={handleSubmit} className='login-form'>
@@ -149,7 +139,7 @@ function LoginSign() {
         </button>
         <span>
           Don't Have an Account? 👉
-          <a href='/signup' id='register'>
+          <a href='/register' id='register'>
             Create One Here!
           </a>
         </span>

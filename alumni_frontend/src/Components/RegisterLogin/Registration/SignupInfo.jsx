@@ -1,24 +1,9 @@
+import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
-import "./Signup.css";
-import { useCookies } from "react-cookie";
-const Signup = () => {
-  const [passwords, setPasswords] = useState({
-    pwd: "",
-    cnfpwd: "",
-  });
 
-  const [cookies] = useCookies(["myToken"]);
-
-  const lookup = {
-    IISE: ["MCA", "MBA"],
-    "IISE LU": ["BBA", "BCOM", "BCA"],
-    FIeMITS: ["BAJMC", "BCA"],
-    // Add more mappings as needed
-  };
-
-  const [opportunity, setOpportunity] = useState({
+function SignupInfo({ onData, onEnroll }) {
+  const [alumniData, setAlumniData] = useState({
     enrollNo: "", // Default selection
     fname: "",
     lname: "",
@@ -31,76 +16,94 @@ const Signup = () => {
     collegeNo: "",
   });
 
-  const [selectedValue, setSelectedValue] = useState("IISE");
+  const [currentYear] = useState(new Date().getFullYear());
 
+  const joiningyears = Array.from(
+    { length: currentYear - 1991 + 1 },
+    (_, i) => currentYear - i
+  );
+  const years = Array.from(
+    { length: currentYear + 3 - 1991 + 1 },
+    (_, i) => currentYear + 3 - i
+  );
+
+  const lookup = {
+    Select: ["Select"],
+    IISE: ["MCA", "MBA"],
+    "IISE LU": ["BBA", "BCOM", "BCA"],
+    FIeMITS: ["BAJMC", "BCA"],
+    // Add more mappings as needed
+  };
+
+  const [selectedValue, setSelectedValue] = useState("Select");
   const handleFirstSelectChange = (event) => {
+    console.log("submitted", alumniData);
     const newValue = event.target.value;
 
     switch (newValue) {
       case "IISE":
-        opportunity.collegeNo = 0;
+        alumniData.collegeNo = 0;
+        alumniData.course = "";
         break;
       case "IISE LU":
-        opportunity.collegeNo = 1;
+        alumniData.collegeNo = 1;
+        alumniData.course = "";
         break;
 
       case "FIeMITS":
-        opportunity.collegeNo = 2;
+        alumniData.collegeNo = 2;
+        alumniData.course = "";
+        break;
+      case "Select":
+        alumniData.course = "";
         break;
       default:
-        opportunity.collegeNo = null;
+        alumniData.collegeNo = null;
         break;
     }
-    console.log(opportunity.collegeNo);
     setSelectedValue(newValue);
   };
 
   const options = lookup[selectedValue];
 
-  const handleChange = (event) => {
-    const { name, value, type } = event.target;
-    setOpportunity((prevOpportunity) => ({
-      ...prevOpportunity,
-      [name]: type === "checkbox" ? value : value,
-    }));
-    setPasswords((prevPasswords) => ({
-      ...prevPasswords,
-      [name]: type === "checkbox" ? value : value,
-    }));
-  };
+  const [passwords, setPasswords] = useState({
+    pwd: "",
+    cnfpwd: "",
+  });
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission
-    console.log("Form Data:", opportunity); // Log form data to console
+    event.preventDefault();
 
-    opportunity.password =
+    alumniData.password =
       passwords.pwd === passwords.cnfpwd ? passwords.pwd : null;
-    console.log(`opp pass : ${opportunity.password}`);
-    if (opportunity.password === null) {
-      console.log("in if");
+    console.log(alumniData);
+    if (alumniData.password === null) {
       toast.error("Passwords Not Matched", {
         duration: 4000,
         position: "bottom-right",
       });
     }
 
-    if (opportunity.dateOfCompletion < opportunity.dateOfJoining) {
+    if (alumniData.dateOfCompletion < alumniData.dateOfJoining) {
       toast.error("Date of Completion must be after Date of Joining", {
         position: `bottom-right`,
         duration: 4000,
       });
     } else {
-      const toastId = toast.loading("Loading 1...", {
+      const toastId = toast.loading("Loading ...", {
         position: `bottom-right`,
         duration: 4000,
       });
+      //''
+      // onData(true);
+
       try {
+        onData(true);
         const response = await axios.post(
           "http://localhost:8080/api/v1/alumni/register",
-          opportunity
+          alumniData
         );
 
-        // ...
         if (response.data.status.success) {
           toast.success(`This worked: ${response.data.status.message}`, {
             id: toastId,
@@ -108,7 +111,10 @@ const Signup = () => {
             duration: 4000,
           });
 
-          setOpportunity({
+          onData(true);
+          onEnroll(alumniData.enrollNo);
+
+          setAlumniData({
             enrollNo: "", // Default selection
             fname: "",
             lname: "",
@@ -147,11 +153,7 @@ const Signup = () => {
   };
 
   return (
-    <div className='signup-container'>
-      <h1 className='signup-header'>
-        <u>Alumni Registration</u>
-      </h1>
-
+    <div>
       <div className='form-container '>
         <form onSubmit={handleSubmit}>
           <div className='input-container form-group'>
@@ -160,8 +162,10 @@ const Signup = () => {
               type='text'
               id='enroll-no'
               name='enrollNo'
-              value={opportunity.enrollNo}
-              onChange={handleChange}
+              value={alumniData.enrollNo}
+              onChange={(event) => {
+                setAlumniData({ ...alumniData, enrollNo: event.target.value });
+              }}
               required
             />
           </div>
@@ -172,8 +176,10 @@ const Signup = () => {
               type='text'
               id='fname'
               name='fname'
-              value={opportunity.fname}
-              onChange={handleChange}
+              value={alumniData.fname}
+              onChange={(event) => {
+                setAlumniData({ ...alumniData, fname: event.target.value });
+              }}
               required
             />
             <label htmlFor='lname'>Last Name *</label>
@@ -181,8 +187,10 @@ const Signup = () => {
               type='text'
               id='lname'
               name='lname'
-              value={opportunity.lname}
-              onChange={handleChange}
+              value={alumniData.lname}
+              onChange={(event) => {
+                setAlumniData({ ...alumniData, lname: event.target.value });
+              }}
               required
             />
           </div>
@@ -193,8 +201,10 @@ const Signup = () => {
               type='email'
               id='email'
               name='email'
-              value={opportunity.email}
-              onChange={handleChange}
+              value={alumniData.email}
+              onChange={(event) => {
+                setAlumniData({ ...alumniData, email: event.target.value });
+              }}
               required
             />
 
@@ -204,28 +214,55 @@ const Signup = () => {
               id='mobile'
               name='mobileNo'
               pattern='^[6789]\d{9}$'
-              value={opportunity.mobileNo}
-              onChange={handleChange}
+              value={alumniData.mobileNo}
+              onChange={(event) => {
+                setAlumniData({ ...alumniData, mobileNo: event.target.value });
+              }}
               required
             />
           </div>
+
           <div className='input-container form-group'>
             <label htmlFor='joining-date'>Joining Date </label>
-            <input
-              type='date'
+
+            <select
               id='joining-date'
               name='dateOfJoining'
-              value={opportunity.dateOfJoining}
-              onChange={handleChange}
-            />
+              value={alumniData.dateOfJoining}
+              onChange={(event) => {
+                setAlumniData({
+                  ...alumniData,
+                  dateOfJoining: event.target.value,
+                });
+              }}
+            >
+              <option>select</option>
+              {joiningyears.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
             <label htmlFor='completion-date'>Completion Date </label>
-            <input
-              type='date'
+
+            <select
               id='completion-date'
               name='dateOfCompletion'
-              value={opportunity.dateOfCompletion}
-              onChange={handleChange}
-            />
+              value={alumniData.dateOfCompletion}
+              onChange={(event) => {
+                setAlumniData({
+                  ...alumniData,
+                  dateOfCompletion: event.target.value,
+                });
+              }}
+            >
+              <option>select</option>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
           <div className='input-container form-group'>
             <label htmlFor='college'>College </label>
@@ -235,7 +272,10 @@ const Signup = () => {
               defaultChecked
               onChange={handleFirstSelectChange}
             >
-              <option value='' selected disabled>
+              {/* <option value='Select' disabled>
+                Select
+              </option> */}
+              <option value='Select' disabled>
                 Select
               </option>
               <option value='IISE'>IISE</option>
@@ -247,12 +287,14 @@ const Signup = () => {
             <label htmlFor='course'>Course </label>
             <select
               name='course'
-              value={opportunity.course}
-              onChange={handleChange}
+              value={alumniData.course}
+              onChange={(event) => {
+                setAlumniData({ ...alumniData, course: event.target.value });
+              }}
             >
-              <option value='' selected disabled>
+              {/* <option value='' disabled>
                 Select
-              </option>
+              </option> */}
               {options.map((option) => (
                 <option key={option} value={option}>
                   {option}
@@ -266,8 +308,10 @@ const Signup = () => {
               type='password'
               id='password'
               name='pwd'
-              value={passwords.pwd}
-              onChange={handleChange}
+              // value={passwords.pwd}
+              onChange={(event) => {
+                setPasswords({ ...passwords, pwd: event.target.value });
+              }}
               required
             />
             <label htmlFor='cnf-password'>Confirm Password</label>
@@ -275,17 +319,22 @@ const Signup = () => {
               type='password'
               id='cnf-password'
               name='cnfpwd'
-              value={passwords.cnfpwd}
-              onChange={handleChange}
+              // value={passwords.cnfpwd}
+              onChange={(event) => {
+                setPasswords({ ...passwords, cnfpwd: event.target.value });
+              }}
               required
             />
           </div>
-          <button type='submit'> Submit</button>
+          <button type='submit' className='submit-btn'>
+            {" "}
+            Submit
+          </button>
         </form>
       </div>
       <Toaster />
     </div>
   );
-};
+}
 
-export default Signup;
+export default SignupInfo;

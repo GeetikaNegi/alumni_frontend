@@ -1,0 +1,140 @@
+
+.signup-container {
+  padding: 2vw 8vw;
+  border: 1px solid black;
+
+  background-color: var(--secondlightest);
+  box-shadow: 0px 0px 15px #185b83;
+  color: var(--palleteblue);
+}
+
+.signup-header {
+  font-size: 3vw;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  text-align: center;
+}
+
+.form-container label {
+  font-weight: 600;
+}
+
+.form-container input {
+  box-shadow: 0px 0px 5px var(--palleteblue);
+}
+
+.form-container button {
+  background-color: var(--palleteblue);
+  font-size: 2vw;
+  font-style: oblique;
+  color: var(--lightest);
+}
+
+
+
+.input-container {
+  display: flex;
+  width: 100%;
+}
+
+#enroll-no {
+  flex-grow: 0.39;
+}
+
+
+
+.progressbar{
+  width:100%;
+  /* height: 1vw; */
+  background-color: var(--lightest);
+  margin: 3vw 0;
+  border-radius: 20px;
+}
+
+
+#alumni-image-preview{
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
+
+.progressbar div{
+  border-radius: 20px;
+  width: 33.3%;
+  height: 100%;
+  background-color: rgb(121, 209, 121);
+  transition: all 2s ease-in-out;
+}
+
+
+.updation-nav{
+  display: flex;
+  justify-content: space-evenly;
+  background-color:var(--lightest);
+}
+.updation-nav-element {
+  
+  width: 28vw;
+  text-align: center;
+  margin: 0 2px ;
+  font-weight: 600;
+  color: var(--palleteblue);
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 5px 0;
+}
+.active-page{
+background-color: rgb(5, 140, 5);
+color: var(--lightest)
+}
+
+@media (max-width:600px) {
+  .signup-header {
+    font-size: 20px;
+  }
+
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+
+  }
+  .form-container button{
+    font-size: 2vh;
+    
+  }
+
+  #joining-date,
+  #completion-date {
+    width: 250px;
+  }
+  #post-job{
+    font-size: 2vh;
+  }
+
+}
+
+#img-upload-input{
+  width: 230px;
+  background-color: var(--thirdlightest);
+  height: 20px;
+}
+
+#img-upload-btn{
+  background-color: var(--secondlightest);
+  border: none;
+}
+
+#img-upload-btn:active {
+  border: 2px solid var(--palleteblue);
+}
+
+#img-upload-btn-svg{
+  height: 3.5vw;
+  padding-top: 1vw;
+}

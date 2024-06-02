@@ -30,6 +30,15 @@
 .alumniprofile-card-font{
   font-size: 2.2vw;
 }
+
+
+.alumni-image{
+  height: 28vw;
+  width: 28vw;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 #basic-detail{
   gap: 0;
   text-align: center;
