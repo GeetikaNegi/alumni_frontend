@@ -12,6 +12,7 @@ import Gallery from "./Components/Gallery/Gallery";
 import MyPopup from "./Components/Popup/MyPopup";
 import AlumniProfile from "./Components/Connect/AlumniDirectory/AlumniProfile";
 import { useState } from "react";
+import { NavbarNew } from "./Components/NavbarNew/NavbarNew";
 
 function App() {
   const [viewProfile, setViewProfile] = useState(false);
@@ -22,7 +23,7 @@ function App() {
   };
   return (
     <div className='App'>
-      <Navbar />
+      <NavbarNew />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/aboutus' element={<Aboutus />} />
