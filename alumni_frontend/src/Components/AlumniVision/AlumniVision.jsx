@@ -1,7 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
+import { useCookies } from "react-cookie";
+
 import "./AlumniVision.css";
 
+import MyPopup from "../Popup/MyPopup";
+import LoginSign from "../RegisterLogin/LoginSign";
+import AlumniProfile from "../Connect/AlumniDirectory/AlumniProfile";
+import userImg from "../../Assets/svgs/user-image.svg";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+
 export default function AlumniVision() {
+  const [viewProfile, setViewProfile] = useState(false);
+  const [showBatchmates, setShowBatchmates] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [renderPopup, setRenderPopup] = useState(false);
+  const [enrollNo, setEnrollNo] = useState(null);
+
+  const [alumniProfile, setAlumniProfile] = useState({
+    enroll_no: "", // Default selection
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+    dateOfJoining: "",
+    dateOfCompletion: "",
+    course: "",
+    mobileNo: "",
+    collegeNo: "",
+    profile_pic_name: "",
+  });
+
+  const [cookies] = useCookies(["accessToken"]);
+  const [token, setToken] = useState(cookies.accessToken);
+  if (token !== undefined) {
+    setEnrollNo(jwtDecode(token).sub);
+    setToken(undefined);
+  }
+  console.log(enrollNo);
+  const handleClosePopup = () => {
+    //THIS IS THE FN SENT AS PROP TO CLOSE POPUP
+    setViewProfile(false);
+    setRenderPopup(false);
+    setShowBatchmates(false);
+    setShowProfile(false);
+    console.log(showBatchmates);
+  };
+  const handleClickOnMyBatchmate = () => {
+    if (cookies.accessToken !== undefined) {
+      console.log(showBatchmates);
+      setShowBatchmates(true);
+    } else {
+      setRenderPopup(true);
+    }
+  };
+
+  const handleClickOnViewProfile = () => {
+    if (cookies.accessToken !== undefined) {
+      getAlumniToView();
+      setShowProfile(true);
+      
+    } else {
+      setRenderPopup(true);
+    }
+  };
+
+  const getAlumniToView = async () => {
+    console.log(cookies.accessToken);
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/api/v1/alumni/get-profile/" + enrollNo,
+        {
+          headers: {
+            Authorization: "Bearer " + cookies.accessToken,
+          },
+        }
+      );
+      console.log(response);
+      setAlumniProfile(response.data.data);
+      console.log(alumniProfile);
+    } catch (error) {}
+  };
+
   return (
     <div className='alumni-vision-color center-align-txt'>
       <div>
@@ -16,24 +96,56 @@ export default function AlumniVision() {
         <div className='vision-card '>
           <span className='large-no '>500+</span>
           <span className=''>Members</span>
-          <button className=' alumni-vision-color'>View Directory</button>
+
+          <a className='link-decoration' href='/alumnidirectory'>
+            <button className=' alumni-vision-color alumni-vision-card-btn'>
+              View Directory
+            </button>
+          </a>
         </div>
         <div className='vision-card'>
           <span className='large-no'>50+</span>
           <span>Batches</span>
-          <button className=' alumni-vision-color'>My Batchmates</button>
+          <button
+            className=' alumni-vision-color alumni-vision-card-btn'
+            onClick={handleClickOnMyBatchmate}
+          >
+            My Batchmates
+          </button>
         </div>
         <div className='vision-card'>
           <span className='large-no'>100+</span>
           <span>Cities</span>
-          <button>View Alumni Map</button>
+          <button className='alumni-vision-card-btn'>View Alumni Map</button>
         </div>
         <div className='vision-card'>
-          <span className='large-no'>PROFILE IMAGE</span>
-          <span>...</span>
-          <button className=' alumni-vision-color'>View Profile</button>
+          <span>
+            <img id='alumnivision-profile-pic' src={userImg} alt='error ' />
+          </span>
+
+          <button
+            className=' alumni-vision-color alumni-vision-card-btn'
+            onClick={handleClickOnViewProfile}
+          >
+            View Profile
+          </button>
         </div>
       </div>
+      {/* {viewProfile && (
+        <MyPopup component={<LoginSign />} onClose={handleClosePopup} />
+      )} */}
+      {renderPopup && (
+        <MyPopup component={<LoginSign />} onClose={handleClosePopup} />
+      )}
+      {showProfile &&
+        (enrollNo === null ? (
+          <MyPopup component={<LoginSign />} onClose={handleClosePopup} />
+        ) : (
+          <MyPopup
+            component={<AlumniProfile data={alumniProfile} />}
+            onClose={handleClosePopup}
+          />
+        ))}
     </div>
   );
 }

@@ -23,5 +23,5 @@
   height: 12vw;
   width: 19vw;
   border-radius: 5%;
-  background-color: #fff;
+  background-color:var(--secondlightest);
 }

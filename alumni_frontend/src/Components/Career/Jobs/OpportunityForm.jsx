@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MyPopup from "../../Popup/MyPopup";
 import { useCookies } from "react-cookie";
-import LoginSign from "../LoginSignup/LoginSign";
+import LoginSign from "../../RegisterLogin/LoginSign";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import "./OpportunityForm.css";

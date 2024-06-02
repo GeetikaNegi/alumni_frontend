@@ -1,29 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import leftArrow from "../../../Assets/svgs/left-arrow.svg";
 
-import { selectDept } from "../../../Data/YearBook";
 import AlumniList from "./AlumniList";
 import Directory from "./Directory";
+import axios from "axios";
 
 const DepartmentDirectory = (props) => {
   const [isAlumniListActive, setIsAlumniListActive] = useState(false);
+  const [course, setCourse] = useState(null);
+  const [courseData, setCourseData] = useState([
+    {
+      college_no: "",
+      count: "",
+      course: "",
+    },
+  ]);
   const [back, setBack] = useState(false);
 
-  const handleClickOnDept = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/alumni/get-courseMember",
+          {
+            params: {
+              year: props.year,
+              college_no: props.college_no,
+            },
+          }
+        );
+        console.log(response.data);
+        setCourseData(response.data.data);
+        console.log(courseData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  console.log(`college no : ${props.college_no} and year :${props.year}`);
+  const handleClickOnDept = (value) => {
+    setCourse(value);
     setIsAlumniListActive(true);
   };
+  console.log(`course,year:${course},${props.year}`);
 
   const handleBackButton = () => {
     setBack(true);
   };
   if (back) {
-    return <Directory data={`this data`} />;
+    return <Directory data={props.college_no} />;
   }
 
   if (isAlumniListActive) {
     // setBack(false);
 
-    return <AlumniList data={`Team_data`} />;
+    return (
+      <AlumniList
+        college_no={props.college_no}
+        year={props.year}
+        course={course}
+      />
+    );
   }
 
   return (
@@ -45,15 +84,17 @@ const DepartmentDirectory = (props) => {
       <div className='cards-container'>
         {/* props.items.map((member, index) => (
           <div */}
-        {selectDept.map((member, index) => (
+        {courseData.map((member, index) => (
           <div
             key={index}
             className='cards card  card-txt-style dir-cards-bg  '
             // id={isDeptActive ? "active-dept" : "inactive-dept"}
             id={member.name}
-            onClick={handleClickOnDept}
+            onClick={() => {
+              handleClickOnDept(member.course);
+            }}
           >
-            <span>{member.name}</span>
+            <span>{member.course}</span>
             <span>Total Member : {member.count}</span>
           </div>
         ))}

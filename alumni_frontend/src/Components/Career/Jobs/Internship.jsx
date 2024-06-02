@@ -6,28 +6,19 @@ import "./Showjobs.css"; // Import your CSS file
 import LoginSign from "../../RegisterLogin/LoginSign";
 import { jwtDecode } from "jwt-decode";
 import { useCookies } from "react-cookie";
-import { toast, Toaster } from "react-hot-toast";
 let jj = {};
-function Showjobs() {
+function Internship() {
   const [jobsData, setJobsData] = useState([]);
-  const [viewMoreJob, setViewMoreJob] = useState({});
+  // const [viewMoreJob, setViewMoreJob] = useState({});
   const [viewJob, setViewJob] = useState({});
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [viewProfile, setViewProfile] = useState(false);
   const [cookies] = useCookies(["accessToken"]);
-  // console.log(`access token :${cookies.accessToken}`);
-
-  // console.log(`this is decodd:${decoded.sub}`);
-
-  const handleViewMore = (job) => {
-    // Replace with your actual navigation/modal logic
-
-    setViewJob(job);
-    setViewProfile((current) => !current);
-  };
 
   const handleClosePopup = () => {
     //THIS IS THE FN SENT AS PROP TO CLOSE POPUP
-
     setViewProfile(false);
   };
 
@@ -38,7 +29,7 @@ function Showjobs() {
         const decoded = jwtDecode(cookies.accessToken);
         try {
           const response = await axios.get(
-            "http://localhost:8080/api/v1/alumni/all-jobs",
+            "http://localhost:8080/api/v1/alumni/all-internships",
             {
               headers: {
                 Authorization: `Bearer ${cookies.accessToken}`,
@@ -47,17 +38,22 @@ function Showjobs() {
           );
           setJobsData(response.data.data || []);
         } catch (error) {
-          console.log(error);
-          toast.error(`Error Loading Jobs ${error.message}`, {
-            position: "bottom-right",
-            duration: 4000,
-          });
+          setError(error);
+        } finally {
+          setIsLoading(false);
         }
-      } else console.log("in islse");
+      }
     };
 
     fetchData();
   }, []);
+
+  const handleViewMore = (job) => {
+    // Replace with your actual navigation/modal logic
+
+    setViewJob(job);
+    setViewProfile((current) => !current);
+  };
 
   return (
     <div className='jobs-table-container'>
@@ -78,11 +74,13 @@ function Showjobs() {
           </a>
         </span>
       </div>
-      <br />
-      {cookies.accessToken === undefined && (
-        <MyPopup component={<LoginSign />} onClose={handleClosePopup} />
-      )}
-      {
+      {isLoading ? (
+        <div className='loading-indicator'>Loading jobs...</div>
+      ) : error ? (
+        <div className='error-message'>
+          Error fetching jobs: {error.message}
+        </div>
+      ) : (
         <table className='jobs-table'>
           <thead>
             <tr>
@@ -103,28 +101,24 @@ function Showjobs() {
                   {job.min_package}-{job.max_package} LPA
                 </td>
                 <td>
-                  <button
-                    onClick={() => {
-                      handleViewMore(job);
-                    }}
-                  >
-                    View More
-                  </button>
+                  <button onClick={() => handleViewMore(job)}>View More</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      }
+      )}
       {viewProfile && (
         <MyPopup
           component={<ViewMore data={viewJob} />}
           onClose={handleClosePopup}
         />
       )}
-      <Toaster />
+      {cookies.accessToken === undefined && (
+        <MyPopup component={<LoginSign />} onClose={handleClosePopup} />
+      )}
     </div>
   );
 }
 
-export default Showjobs;
+export default Internship;

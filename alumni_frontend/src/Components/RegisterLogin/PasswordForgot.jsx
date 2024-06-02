@@ -138,7 +138,9 @@ const ForgotPassword = () => {
             onSubmit={handleResetPassword}
             className='form-forgot-password flex-direction-col'
           >
-            <label htmlFor='new-password'>New Password:</label>
+            <label htmlFor='new-password' id='newpassword'>
+              New Password:
+            </label>
             <input
               type='password' // Use type="password" for security
               id='new-password'
@@ -147,7 +149,9 @@ const ForgotPassword = () => {
               required
               className={error ? "input-error" : ""} // Add error class if there's an error
             />
-            <label htmlFor='confirm-password'>Confirm Password:</label>
+            <label htmlFor='confirm-password' id='newpassword'>
+              Confirm Password:
+            </label>
             <input
               type='password' // Use type="password" for security
               id='confirm-password'
@@ -156,7 +160,9 @@ const ForgotPassword = () => {
               required
               className={error ? "input-error" : ""} // Add error class if there's an error
             />
-            <button type='submit'>Reset Password</button>
+            <button type='submit' id='resetPassBtn'>
+              Reset Password
+            </button>
           </form>
         );
       default:

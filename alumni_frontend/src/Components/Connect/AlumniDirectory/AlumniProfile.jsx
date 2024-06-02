@@ -9,7 +9,11 @@ import preference from "../../../Assets/svgs/preferences.svg";
 import work from "../../../Assets/svgs/work.svg";
 import linkdin from "../../../Assets/linkedin.png";
 import "./AlumniProfile.css";
-const AlumniProfile = () => {
+import { useCookies } from "react-cookie";
+import toast, { Toaster } from "react-hot-toast";
+
+import axios from "axios";
+const AlumniProfile = (props) => {
   const Team_data = {
     name: `Arshad Shrivastava ANAND`,
     image: faculty1,
@@ -28,24 +32,73 @@ const AlumniProfile = () => {
     startDate: `Aug 2018`,
     endDate: `Till Now`,
   };
-  const handleDelete = () => {
+  const [cookies] = useCookies(["accessToken"]);
+  const collegeNames = ["IISE", "IISE LU", "FIeMITS"];
+
+  const handleDelete = async () => {
     const collegeId = prompt(`Are You Sure\nEnter Your College Id To Proceed`);
     console.log(collegeId);
+    if (collegeId !== null) {
+      const toastId = toast.loading("Loading", {
+        position: `bottom-right`,
+        duration: 4000,
+      });
+      try {
+        const response = await axios.delete(
+          "http://localhost:8080/api/v1/alumni/delete-alumni",
+          {
+            params: {
+              enroll_no: collegeId,
+            },
+            headers: {
+              Authorization: `Bearer ${cookies.accessToken}`,
+            },
+          }
+        );
+
+        if (response.data.status.success) {
+          toast.success(`${response.data.status.message}`, {
+            id: toastId,
+            position: "bottom-right",
+            duration: 4000,
+          });
+        } else {
+          toast.error(`${response.data.status.message}`, {
+            id: toastId,
+            position: "bottom-right",
+            duration: 4000,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
   return (
     <div>
       <div className='profile-card '>
         <div className='alumniprofile-card  ' id='basic-detail'>
-          <span>
-            <img src={Team_data.image} id='profile-pic' alt='error' />
+          <span className='alumni-image-container'>
+            <img
+              className='alumni-image'
+              src={
+                props.data.profile_pic_name === null
+                  ? faculty1
+                  : "http://localhost:8080/api/v1/alumni/image?fileName=" +
+                    props.data.profile_pic_name
+              }
+              alt='alumniImage'
+            />
           </span>
-          <span>{Team_data.name}</span>
+          <span>
+            {props.data.fname} {props.data.lname}
+          </span>
 
-          <span>{Team_data.collegeName}</span>
+          <span>{collegeNames[props.data.collegeNo]}</span>
 
-          <span>{Team_data.courseName}</span>
-          <span>Batch of {Team_data.batch}</span>
-          <span>College ID : {Team_data.enrollmentNo}</span>
+          <span>{props.data.course}</span>
+          <span>Batch of {props.data.dateOfJoining}</span>
+          <span>College ID : {props.data.enroll_no}</span>
         </div>
         <div className=' alumniprofile-card alumniprofile-card-font'>
           <span className='profilecard-header'>
@@ -58,7 +111,7 @@ const AlumniProfile = () => {
             <span>
               <img className='icon' src={email} alt='linked' />
             </span>{" "}
-            <a href={`mailto:${Team_data.email}`}>{Team_data.email}</a>
+            <a href={`mailto:${props.data.email}`}>{props.data.email}</a>
           </span>
 
           <span>
@@ -66,7 +119,7 @@ const AlumniProfile = () => {
               <img className='icon' src={phone} alt='' />
             </span>
             {` `}
-            {Team_data.mobile}
+            {props.data.mobileNo}
           </span>
 
           <span>
@@ -129,6 +182,8 @@ const AlumniProfile = () => {
           </div>
         </div>
       </div>
+
+      <Toaster />
     </div>
   );
 };
