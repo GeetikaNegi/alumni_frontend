@@ -9,6 +9,7 @@ import Batchmate from "./Components/Connect/Batchmate";
 import CollegeDirectory from "./Components/Connect/AlumniDirectory/CollegeDirectory";
 import Gallery from "./Components/Gallery/Gallery";
 import { useState } from "react";
+import { NavbarNew } from "./Components/NavbarNew/NavbarNew";
 import OpportunityForm from "./Components/Career/Jobs/OpportunityForm";
 import Showjobs from "./Components/Career/Jobs/Showjobs";
 import Internship from "./Components/Career/Jobs/Internship";
@@ -24,7 +25,7 @@ function App() {
   };
   return (
     <div className='App'>
-      <Navbar />
+      <NavbarNew />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/aboutus' element={<Aboutus />} />
