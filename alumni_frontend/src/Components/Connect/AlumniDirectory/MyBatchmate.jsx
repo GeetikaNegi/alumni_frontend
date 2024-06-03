@@ -10,6 +10,7 @@ import CollegeDirectory from "./CollegeDirectory";
 import userImg from "../../../Assets/svgs/user-image.svg";
 import { useCookies } from "react-cookie";
 import { jwtDecode } from "jwt-decode";
+import LoginSign from "../../RegisterLogin/LoginSign";
 
 const MyBatchmate = () => {
   const [viewProfile, setViewProfile] = useState(false);
@@ -23,8 +24,9 @@ const MyBatchmate = () => {
   const [count, setCount] = useState(1);
 
   const [cookie] = useCookies(["accessToken"]);
-  const token = cookie.accessToken;
-  const enroll_no = jwtDecode(token).sub;
+  const [enroll_no, setEnroll_no] = useState(null);
+  const [token, setToken] = useState(cookie.accessToken);
+
   //jlj
   const handleBackButton = () => setBack(true);
   const [alumniProfileList, setAlumniProfileList] = useState([
@@ -35,19 +37,26 @@ const MyBatchmate = () => {
       email: "",
       password: "",
       dateOfJoining: "",
-      dateOfCompletion: "",
+      date_of_completion: "",
       course: "",
       mobileNo: "",
       collegeNo: "",
-      profile_pic_name: userImg,
+      profile_pic_name: "",
     },
   ]);
 
   const [isLoading, setIsLoading] = useState(true);
   const handleViewMoreBtn = (index) => {
     setMemberIndex(index);
-    setViewProfile((current) => !current); //jj
+    setViewProfile((current) => !current); //jj kkk kk
   };
+
+  useEffect(() => {
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchBatchData = async () => {
@@ -56,22 +65,18 @@ const MyBatchmate = () => {
           "http://localhost:8080/api/v1/alumni/get-alumniBatch",
           {
             params: {
-              enroll_no: enroll_no,
+              enroll_no: jwtDecode(token).sub,
             },
             headers: {
               Authorization: "Bearer " + token,
             },
           }
-        );
+        ); //;;nnnnnn
         setShowBatchmates(response.data.data);
-
         setCallFetchBatchdetails(true);
         if (callFetchBatchDetails) {
           setX(false);
         }
-
-        console.log(callFetchBatchDetails);
-        console.log(showBatchmates);
       } catch (error) {
         console.log(error);
       }
@@ -82,7 +87,7 @@ const MyBatchmate = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true); // Set loading to true before the fetchkjkjb
+      setIsLoading(true); // Set loading to true before the fetchkjkjb nnnn
       setCallFetchBatchdetails(false);
       try {
         const response = await axios.get(
@@ -91,16 +96,14 @@ const MyBatchmate = () => {
             params: {
               college_no: showBatchmates?.collegeNo,
               year: showBatchmates?.date_of_joining,
-              course: showBatchmates?.course, //
+              course: showBatchmates?.course, // mmm
             },
           }
         );
-        console.log(response.data);
-        // setCourseData(response.data.data);
-        // console.log(courseData);
+        // setCourseData(response.data.data)nnn;
+        // console.log(courseData); nnnnn
 
         setAlumniProfileList(response.data.data);
-        console.log(alumniProfileList);
       } catch (error) {
         console.log(error);
       } finally {
@@ -109,12 +112,11 @@ const MyBatchmate = () => {
     };
     console.log("use effect called" + count);
     setCount(count + 1);
-    console.log(showBatchmates);
     if (count == 2) {
       fetchData();
     }
 
-    // fetchData();
+    // fetchData(); nn nnnnd
   }, [x]);
 
   const handleClosePopup = () => {
@@ -130,7 +132,11 @@ const MyBatchmate = () => {
   return (
     <div>
       {isLoading ? (
-        <p>Loading batch data...</p>
+        token === undefined ? (
+          <MyPopup component={<LoginSign />} onClose={handleClosePopup} />
+        ) : (
+          <p>load</p>
+        )
       ) : (
         <div className=' dir-container'>
           <div className='upper-division'>
@@ -144,8 +150,6 @@ const MyBatchmate = () => {
               className='left-arrow '
               onClick={handleBackButton}
             />
-
-            <button className='dir-container'>MY BATCHMATES</button>
           </div>
           <div className='cards-container' id='alumnilist-container'>
             {/* {props.items.map((member, index) */}
@@ -168,7 +172,7 @@ const MyBatchmate = () => {
                 <span className='smaller'>
                   {member.fname} {member.lname}
                 </span>
-                <span> Alumni Since-{member.course}</span>
+                <span> Alumni Since-{member.date_of_completion}</span>
 
                 <button
                   key={index}

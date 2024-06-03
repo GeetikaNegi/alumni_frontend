@@ -29,9 +29,7 @@ const DepartmentDirectory = (props) => {
             },
           }
         );
-        console.log(response.data);
         setCourseData(response.data.data);
-        console.log(courseData);
       } catch (error) {
         console.log(error);
       }
@@ -39,12 +37,10 @@ const DepartmentDirectory = (props) => {
     fetchData();
   }, []);
 
-  console.log(`college no : ${props.college_no} and year :${props.year}`);
   const handleClickOnDept = (value) => {
     setCourse(value);
     setIsAlumniListActive(true);
   };
-  console.log(`course,year:${course},${props.year}`);
 
   const handleBackButton = () => {
     setBack(true);
@@ -79,7 +75,6 @@ const DepartmentDirectory = (props) => {
           onClick={handleBackButton}
         />
 
-        <button className='dir-container'>MY BATCHMATES</button>
       </div>
       <div className='cards-container'>
         {/* props.items.map((member, index) => (

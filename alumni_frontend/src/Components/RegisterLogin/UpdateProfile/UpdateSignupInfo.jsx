@@ -115,8 +115,8 @@ function UpdateSignupInfo({ onData, onEnroll }) {
             duration: 4000,
           });
 
-          onData(true);
-          onEnroll(alumniData.enrollNo);
+          // onData(true);
+          // onEnroll(alumniData.enrollNo);
 
           setAlumniData({
             enrollNo: "", // Default selection

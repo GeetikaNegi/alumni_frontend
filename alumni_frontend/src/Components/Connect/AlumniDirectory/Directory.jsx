@@ -29,9 +29,7 @@ function Directory(props) {
             },
           }
         );
-        console.log(response.data);
         setYearData(response.data.data);
-        console.log(yearData);
       } catch (error) {
         console.log(error);
       }
@@ -43,7 +41,6 @@ function Directory(props) {
     setSelectedYear(value);
     setIsDeptActive(true);
   };
-  console.log(`count ${props.data}`);
 
   const handleBackButton = () => {
     setBack(true);
@@ -71,8 +68,6 @@ function Directory(props) {
           className='left-arrow '
           onClick={handleBackButton}
         />
-
-        <button className='dir-container'>MY BATCHMATES</button>
       </div>
       <div className='cards-container'>
         {yearData.map((member, index) => (

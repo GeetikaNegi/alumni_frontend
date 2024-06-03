@@ -58,7 +58,6 @@ const AlumniList = (props) => {
       profile_pic_name: "",
     },
   ]);
-  const [imgNames, setImgNames] = useState(null);
 
   const [alumniImage, setAlumniImage] = useState([]);
   const [imageUrl, setImageUrl] = useState(null);
@@ -70,7 +69,6 @@ const AlumniList = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(props.course);
       try {
         const response = await axios.get(
           "http://localhost:8080/api/v1/alumni/get-batch",
@@ -82,20 +80,10 @@ const AlumniList = (props) => {
             },
           }
         );
-        console.log(response.data);
-        // setCourseData(response.data.data);
-        // console.log(courseData);
 
         setAlumniProfileList(response.data.data);
-        console.log(alumniProfileList);
         if (response.data.status.success) {
-          console.log("success is ours");
           //...hh
-          alumniProfileList.map((member, index) => {
-            console.log("in map");
-            setImgNames(member.profile_pic_name);
-          });
-          console.log(imgNames);
         }
       } catch (error) {
         console.log(error); //..x`,,
@@ -104,7 +92,6 @@ const AlumniList = (props) => {
     fetchData();
   }, []);
   //..
-
 
   const handleClosePopup = () => {
     //THIS IS THE FN SENT AS PROP TO CLOSE POPUP
@@ -117,7 +104,6 @@ const AlumniList = (props) => {
       <DepartmetDirectory college_no={props.college_no} year={props.year} />
     );
   }
-  console.log(`props are : ${props.college_no},${props.year},${props.course}`);
 
   return (
     <div className=' dir-container'>
@@ -132,10 +118,7 @@ const AlumniList = (props) => {
           className='left-arrow '
           onClick={handleBackButton}
         />
-
-        <button className='dir-container'>MY BATCHMATES</button>
       </div>
-      {console.log(alumniProfileList)}
       <div className='cards-container' id='alumnilist-container'>
         {/* {props.items.map((member, index) */}
         {alumniProfileList.map((member, index) => (

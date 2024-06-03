@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
 import "./AlumniVision.css";
@@ -32,19 +32,15 @@ export default function AlumniVision() {
   });
 
   const [cookies] = useCookies(["accessToken"]);
-  const [token, setToken] = useState(cookies.accessToken);
-  if (token !== undefined) {
-    setEnrollNo(jwtDecode(token).sub);
-    setToken(undefined);
-  }
-  console.log(enrollNo);
+
+  let token = "";
+
   const handleClosePopup = () => {
-    //THIS IS THE FN SENT AS PROP TO CLOSE POPUP
+    //THIS IS THE FN SENT AS PROP TO CLOSE POPUP fvf
     setViewProfile(false);
     setRenderPopup(false);
     setShowBatchmates(false);
     setShowProfile(false);
-    console.log(showBatchmates);
   };
   const handleClickOnMyBatchmate = () => {
     if (cookies.accessToken !== undefined) {
@@ -54,33 +50,48 @@ export default function AlumniVision() {
       setRenderPopup(true);
     }
   };
+  useEffect(() => {
+    try {
+      //.
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const handleClickOnViewProfile = () => {
     if (cookies.accessToken !== undefined) {
-      getAlumniToView();
       setShowProfile(true);
-      
     } else {
       setRenderPopup(true);
     }
   };
 
-  const getAlumniToView = async () => {
-    console.log(cookies.accessToken);
-    try {
-      const response = await axios.get(
-        "http://localhost:8080/api/v1/alumni/get-profile/" + enrollNo,
-        {
-          headers: {
-            Authorization: "Bearer " + cookies.accessToken,
-          },
+  useEffect(() => {
+    token = cookies.accessToken;
+    if (token === undefined) {
+      console.log("if");
+    } else {
+      setEnrollNo(jwtDecode(token).sub);
+
+      const getAlumniToView = async () => {
+        try {
+          const response = await axios.get(
+            "http://localhost:8080/api/v1/alumni/get-profile/" +
+              jwtDecode(token).sub,
+            {
+              headers: {
+                Authorization: "Bearer " + cookies.accessToken,
+              },
+            }
+          );
+          setAlumniProfile(response.data.data);
+        } catch (error) {
+          console.log(error);
         }
-      );
-      console.log(response);
-      setAlumniProfile(response.data.data);
-      console.log(alumniProfile);
-    } catch (error) {}
-  };
+      };
+      getAlumniToView();
+    }
+  }, []);
 
   return (
     <div className='alumni-vision-color center-align-txt'>
@@ -106,12 +117,14 @@ export default function AlumniVision() {
         <div className='vision-card'>
           <span className='large-no'>50+</span>
           <span>Batches</span>
-          <button
-            className=' alumni-vision-color alumni-vision-card-btn'
-            onClick={handleClickOnMyBatchmate}
-          >
-            My Batchmates
-          </button>
+          <a href='/my-batchmate'>
+            <button
+              className=' alumni-vision-color alumni-vision-card-btn'
+              onClick={handleClickOnMyBatchmate}
+            >
+              My Batchmates
+            </button>
+          </a>
         </div>
         <div className='vision-card'>
           <span className='large-no'>100+</span>
@@ -120,7 +133,17 @@ export default function AlumniVision() {
         </div>
         <div className='vision-card'>
           <span>
-            <img id='alumnivision-profile-pic' src={userImg} alt='error ' />
+            <img
+              id='alumnivision-profile-pic'
+              src={
+                alumniProfile.profile_pic_name === "" ||
+                alumniProfile.profile_pic_name === null
+                  ? userImg
+                  : "http://localhost:8080/api/v1/alumni/image?fileName=" +
+                    alumniProfile.profile_pic_name
+              }
+              alt='error '
+            />
           </span>
 
           <button

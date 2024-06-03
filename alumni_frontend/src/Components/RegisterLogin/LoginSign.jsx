@@ -57,8 +57,10 @@ function LoginSign() {
             { expires: new Date(Date.now() + 1200000) },
             { path: "/" }
           );
+          document.body.classList.remove("body-no-scroll");
 
           // console.log(`token ${response.data.data.token}`);
+          navigate("/");
         } else {
           toast.error(` ${response.data.data}`, {
             id: toastId,
@@ -83,7 +85,6 @@ function LoginSign() {
         duration: 4000,
       });
     }
-    navigate("/");
   };
 
   const handleChange = (event) => {
@@ -101,7 +102,6 @@ function LoginSign() {
 
   return (
     <div className='login-container signup-container '>
-      {loginSuccess && <Home />}
       <h1 className='signup-header'>Login To Alumni Connect</h1>
       <form onSubmit={handleSubmit} className='login-form'>
         <div>

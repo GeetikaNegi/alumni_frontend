@@ -13,10 +13,6 @@ function UpdateProfileHome() {
   const [isProfessionalActive, setIsProfessionalActive] = useState(false);
   const [isPicActive, setIsPicActive] = useState(false);
 
-  const cookies = useCookies("accessToken");
-
-  const AlumniEnrollNo = jwtDecode(cookies.accessToken).sub;
-
   const headers = [
     "Academic Details",
     "Professional Details",
@@ -30,24 +26,15 @@ function UpdateProfileHome() {
     setShowNext(data);
   };
 
-  const getEnrollFromChild = (enroll) => {
-    console.log("this is data ", enroll);
-    setEnrollNo(enroll);
-  };
-
   const display = () => {
     if (page === 0) {
       return (
-        <UpdateSignupInfo
-          enroll={enrollNo}
-          onData={getSuccessFromChild}
-          onEnroll={getEnrollFromChild}
-        />
+        <UpdateSignupInfo />
       );
     } else if (page === 1) {
-      return <SocialInfo onData={getSuccessFromChild} enroll={enrollNo} />;
+      return <SocialInfo  />;
     } else {
-      return <ProfilePic enroll={enrollNo} />;
+      return <ProfilePic  />;
     } //..
   };
 

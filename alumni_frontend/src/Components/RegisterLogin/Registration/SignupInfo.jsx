@@ -37,7 +37,7 @@ function SignupInfo({ onData, onEnroll }) {
 
   const [selectedValue, setSelectedValue] = useState("Select");
   const handleFirstSelectChange = (event) => {
-    console.log("submitted", alumniData);
+    console.log("submitted", event.target.value);
     const newValue = event.target.value;
 
     switch (newValue) {
@@ -62,6 +62,7 @@ function SignupInfo({ onData, onEnroll }) {
         break;
     }
     setSelectedValue(newValue);
+    console.log(`this is alumnicollege : ${alumniData.collegeNo}`);
   };
 
   const options = lookup[selectedValue];
@@ -275,7 +276,7 @@ function SignupInfo({ onData, onEnroll }) {
               {/* <option value='Select' disabled>
                 Select
               </option> */}
-              <option value='Select' disabled>
+              <option value='Select' selected disabled>
                 Select
               </option>
               <option value='IISE'>IISE</option>

@@ -10,12 +10,13 @@ const MyPopup = (props) => {
     if (isOpen) {
       document.body.classList.add("body-no-scroll");
     } else {
-      document.body.classList.remove("body-no-scroll");
+      // document.body.classList.remove("body-no-scroll");
     }
-  }, [isOpen]);
+  }, [isOpen]); //''dsjdf
 
   const togglePopup = () => {
     setIsOpen((isOpen) => !isOpen);
+    document.body.classList.remove("body-no-scroll");
     props.onClose();
   };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import faculty1 from "../../../Assets/team/DEEPTI GUPTA.jpg";
 import phone from "../../../Assets/phone.png";
 import email from "../../../Assets/svgs/email.svg";
@@ -11,8 +11,11 @@ import linkdin from "../../../Assets/linkedin.png";
 import "./AlumniProfile.css";
 import { useCookies } from "react-cookie";
 import toast, { Toaster } from "react-hot-toast";
+import MyPopup from "../../Popup/MyPopup";
+import LoginSign from "../../RegisterLogin/LoginSign";
 
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 const AlumniProfile = (props) => {
   const Team_data = {
     name: `Arshad Shrivastava ANAND`,
@@ -33,7 +36,23 @@ const AlumniProfile = (props) => {
     endDate: `Till Now`,
   };
   const [cookies] = useCookies(["accessToken"]);
+
   const collegeNames = ["IISE", "IISE LU", "FIeMITS"];
+
+  const [professionalData, setProfessionalData] = useState({
+    occupation: "",
+    organisation: "",
+    linked_url: "",
+    about: "",
+  });
+
+  const [showAction, setShowAction] = useState(false);
+  const [renderPopup, setRenderPopup] = useState(false);
+
+  const handleClosePopup = () => {
+    //THIS IS THE FN SENT AS PROP TO CLOSE POPUP
+    setRenderPopup(false);
+  };
 
   const handleDelete = async () => {
     const collegeId = prompt(`Are You Sure\nEnter Your College Id To Proceed`);
@@ -74,6 +93,49 @@ const AlumniProfile = (props) => {
       }
     }
   };
+  const token = cookies.accessToken;
+
+  const hey = () => {
+    try {
+      //.
+      const enr = jwtDecode(token).sub;
+
+      if (props.data.enroll_no.toString() === enr) {
+        setShowAction(true);
+      }
+    } catch (InvalidTokenError) {
+      console.log(InvalidTokenError);
+    }
+  };
+
+  useEffect(() => {
+    //..mmmm.....nnnhhh
+    hey();
+    const fetchAlumniOtherData = async () => {
+      try {
+        console.log(`roll :${props.data.enroll_no}`);
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/alumni/get-professional-profile/" +
+            props.data.enroll_no
+        );
+        if (response.data.status.success) {
+          if (response.data.status.statusCode === 200) {
+            setProfessionalData(response.data.data);
+          }
+        } else {
+          toast.error(`${response.data.errorMessage}`, {
+            position: "bottom-right",
+            duration: 4000,
+          });
+        }
+      } catch (error) {
+        console.log(`we got struck. ${error}`);
+      }
+    };
+
+    fetchAlumniOtherData();
+  }, []); //.
+
   return (
     <div>
       <div className='profile-card '>
@@ -126,8 +188,18 @@ const AlumniProfile = (props) => {
             <span>
               <img className='icon' src={linkdin} alt='linked' />
             </span>{" "}
-            <a href={Team_data.linkedin} target='_blank' rel='noreferrer'>
-              {Team_data.linkedin}
+            <a
+              href={
+                professionalData.linked_url !== ""
+                  ? professionalData.linked_url
+                  : "#"
+              }
+              target='_blank'
+              rel='noreferrer'
+            >
+              {professionalData.linked_url !== ""
+                ? professionalData.linked_url
+                : "N/A"}
             </a>
           </span>
           <span>
@@ -135,7 +207,7 @@ const AlumniProfile = (props) => {
               <img className='icon' src={address} alt='linked' />
             </span>{" "}
             <span id='address'>
-              {Team_data.address},{Team_data.city},{Team_data.pincode}
+              {professionalData.about !== "" ? professionalData.about : "N/A"}
             </span>
           </span>
         </div>
@@ -144,15 +216,20 @@ const AlumniProfile = (props) => {
             <span>
               <img className='header-icon' src={work} alt='img' />
             </span>
-            Work Experience
+            Work Profile
           </span>
-          <span id='profile-heading1'>{Team_data.jobProfile}</span>
-          <span id='profile-heading2'>{Team_data.companyName}</span>
-          <span id='profile-heading3'>
-            {Team_data.startDate} to {Team_data.endDate}
+          <span id='profile-heading1'>
+            {professionalData.occupation !== ""
+              ? professionalData.occupation
+              : "N/A"}
+          </span>
+          <span id='profile-heading2'>
+            {professionalData.occupation !== ""
+              ? professionalData.occupation
+              : "N/A"}
           </span>
         </div>
-        <div className=' alumniprofile-card alumniprofile-card-font'>
+        {/* <div className=' alumniprofile-card alumniprofile-card-font'>
           <span className='profilecard-header'>
             <span>
               <img className='header-icon' src={preference} alt='img' />
@@ -167,22 +244,30 @@ const AlumniProfile = (props) => {
           </span>
           <span id='profile-heading1'>City</span>
           <span>{Team_data.city}</span>
-        </div>
-        <div className=' alumniprofile-card alumniprofile-card-font'>
-          <span className='profilecard-header'>
-            <span>
-              <img className='header-icon' src={action} alt='img' />
+        </div> */}
+        {showAction && (
+          <div className=' alumniprofile-card alumniprofile-card-font'>
+            <span className='profilecard-header'>
+              <span>
+                <img className='header-icon' src={action} alt='img' />
+              </span>
+              Actions
             </span>
-            Actions
-          </span>
-          <div className='profile-actions '>
-            <button>Edit Profile</button>
-            <button>Set Job Preferences</button>
-            <button onClick={handleDelete}>Delete Account</button>
+            <div className='profile-actions '>
+              <button>
+                <a href='/post-opportunity'>Post an Opportunity</a>{" "}
+              </button>
+              <button>
+                <a href='/update-profile'>Edit Profile</a>
+              </button>
+              <button onClick={handleDelete}>Delete Account</button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
-
+      {renderPopup && (
+        <MyPopup component={<LoginSign />} onClose={handleClosePopup} />
+      )}
       <Toaster />
     </div>
   );

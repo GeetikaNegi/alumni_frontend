@@ -41,6 +41,7 @@ function App() {
         <Route path='/my-upload' element={<uploadPic />} />
         <Route path='/register' element={<Register />} />
         <Route path='/my-batchmate' element={<MyBatchmate />} />
+        <Route path='/update-profile' element={<UpdateProfileHome />} />
       </Routes>
 
       <Footer />
