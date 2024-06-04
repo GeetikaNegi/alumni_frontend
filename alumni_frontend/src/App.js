@@ -28,7 +28,7 @@ function App() {
         <Route path='/jobs' element={<Showjobs />} />
         <Route path='/internship' element={<Internship />} />
 
-        <Route path='/gallery' element={<UpdateProfileHome />} />
+        {/* <Route path='/gallery' element={<UpdateProfileHome />} /> */}
 
         <Route path='/post-opportunity' element={<OpportunityForm />} />
         <Route path='/my-upload' element={<uploadPic />} />

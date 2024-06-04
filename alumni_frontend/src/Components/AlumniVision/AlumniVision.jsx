@@ -66,7 +66,6 @@ export default function AlumniVision() {
 
   useEffect(() => {
     token = cookies.accessToken;
-    console.log(typeof cookies.accessToken);
     if (token === undefined) {
       console.log("if");
     } else {
@@ -91,8 +90,6 @@ export default function AlumniVision() {
       getAlumniToView();
     }
   }, []);
-
-  
 
   return (
     <div className='alumni-vision-color center-align-txt'>

@@ -56,7 +56,6 @@ export const NavbarNew = () => {
   };
 
   useEffect(() => {
-    console.log(cookies.accessToken);
     if (cookies.accessToken) {
       setShowLogout(false);
     } else {

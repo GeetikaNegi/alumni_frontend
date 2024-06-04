@@ -8,7 +8,7 @@ function SocialInfo({ onData, enroll }) {
     enrollNo: enroll,
     occupation: "",
     organisation: "",
-    linkedInUrl: "",
+    linked_url: "",
     about: "",
   });
 
@@ -91,12 +91,12 @@ function SocialInfo({ onData, enroll }) {
           <input
             type='text'
             id='linkedIn'
-            name='linkedInUrl'
+            name='linked_url'
             value={professionProfile.deadline}
             onChange={(event) => {
               setProfessionalProfile({
                 ...professionProfile,
-                linkedInUrl: event.target.value,
+                linked_url: event.target.value,
               });
             }}
             required

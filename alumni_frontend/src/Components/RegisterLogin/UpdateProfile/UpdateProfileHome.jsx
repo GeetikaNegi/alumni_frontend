@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useCookies } from "react-cookie";
 
 import UpdateSignupInfo from "./UpdateSignupInfo";
 import SocialInfo from "./UpdateSocialInfo";
-import ProfilePic from "./UpdateProfilePic";
+import UpdateProfilePic from "./UpdateProfilePic";
 import { jwtDecode } from "jwt-decode";
 
 function UpdateProfileHome() {
@@ -12,29 +12,25 @@ function UpdateProfileHome() {
   const [isBasicActive, setIsBasicActive] = useState(true);
   const [isProfessionalActive, setIsProfessionalActive] = useState(false);
   const [isPicActive, setIsPicActive] = useState(false);
-
+  const [enroll, setEnroll] = useState("");
   const headers = [
     "Academic Details",
     "Professional Details",
     "Profile Picture",
   ];
 
-  const [showNext, setShowNext] = useState(false);
-  const [enrollNo, setEnrollNo] = useState(2);
-  const getSuccessFromChild = (data) => {
-    console.log("this is data ", data);
-    setShowNext(data);
+  const getPicNameFromChild = (data) => {
+    console.log(data);
+    setEnroll(data);
   };
 
   const display = () => {
     if (page === 0) {
-      return (
-        <UpdateSignupInfo />
-      );
+      return <UpdateSignupInfo onData={getPicNameFromChild} />;
     } else if (page === 1) {
-      return <SocialInfo  />;
+      return <SocialInfo />;
     } else {
-      return <ProfilePic  />;
+      return <UpdateProfilePic data={enroll} />;
     } //..
   };
 

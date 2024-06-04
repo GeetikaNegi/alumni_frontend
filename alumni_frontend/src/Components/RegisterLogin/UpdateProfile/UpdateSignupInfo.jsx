@@ -1,19 +1,21 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useCookies } from "react-cookie";
+import { jwtDecode } from "jwt-decode";
 
-function UpdateSignupInfo({ onData, onEnroll }) {
+function UpdateSignupInfo({ onData }) {
+  const [cookies] = useCookies("accessToken");
+  const [enroll, setEnroll] = useState();
   const [alumniData, setAlumniData] = useState({
-    enrollNo: "2200570014", // Default selection
-    fname: "ANKUSH KUMAR",
-    lname: "VERMA",
-    email: "chandrawansheakv@gmail.com",
-    password: "",
-    dateOfJoining: "2022",
-    dateOfCompletion: "2024",
-    course: "BCA",
-    mobileNo: "9984981991",
-    collegeNo: 2,
+    fname: " ",
+    lname: "",
+    email: "",
+    dateOfJoining: "  ",
+    dateOfCompletion: " ",
+    course: " ",
+    mobileNo: " ",
+    collegeNo: 0,
   });
 
   const [currentYear] = useState(new Date().getFullYear());
@@ -33,14 +35,39 @@ function UpdateSignupInfo({ onData, onEnroll }) {
     IISE: ["MCA", "MBA"],
     "IISE LU": ["BBA", "BCOM", "BCA"],
     FIeMITS: ["BAJMC", "BCA"],
+    Select: ["select"],
     // Add more mappings as needed
   };
+
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        const token = cookies.accessToken;
+        setEnroll(jwtDecode(token).sub);
+        const enroll = jwtDecode(token).sub;
+
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/alumni/get-profile/" + enroll,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setAlumniData(response.data.data);
+        setSelectedValue(colleges[alumniData.collegeNo]);
+        onData(response.data.data.profile_pic_name);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchProfile();
+  }, []);
 
   const [selectedValue, setSelectedValue] = useState(
     colleges[alumniData.collegeNo]
   );
   const handleFirstSelectChange = (event) => {
-    console.log("submitted", alumniData);
     const newValue = event.target.value;
 
     switch (newValue) {
@@ -68,7 +95,6 @@ function UpdateSignupInfo({ onData, onEnroll }) {
   };
 
   const options = lookup[selectedValue];
-  console.log(options);
 
   const [passwords, setPasswords] = useState({
     pwd: "",
@@ -78,15 +104,7 @@ function UpdateSignupInfo({ onData, onEnroll }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    alumniData.password =
-      passwords.pwd === passwords.cnfpwd ? passwords.pwd : null;
     console.log(alumniData);
-    if (alumniData.password === null) {
-      toast.error("Passwords Not Matched", {
-        duration: 4000,
-        position: "bottom-right",
-      });
-    }
 
     if (alumniData.dateOfCompletion < alumniData.dateOfJoining) {
       toast.error("Date of Completion must be after Date of Joining", {
@@ -100,12 +118,18 @@ function UpdateSignupInfo({ onData, onEnroll }) {
       });
       //''
       // onData(true);
+      console.log(alumniData);
 
       try {
         onData(true);
-        const response = await axios.post(
-          "http://localhost:8080/api/v1/alumni/register",
-          alumniData
+        const response = await axios.put(
+          "http://localhost:8080/api/v1/alumni/update-profile",
+          alumniData,
+          {
+            headers: {
+              Authorization: "Bearer " + cookies.accessToken,
+            },
+          }
         );
 
         if (response.data.status.success) {
@@ -119,7 +143,6 @@ function UpdateSignupInfo({ onData, onEnroll }) {
           // onEnroll(alumniData.enrollNo);
 
           setAlumniData({
-            enrollNo: "", // Default selection
             fname: "",
             lname: "",
             email: "",
@@ -167,11 +190,7 @@ function UpdateSignupInfo({ onData, onEnroll }) {
               id='enroll-no'
               name='enrollNo'
               disabled
-              value={alumniData.enrollNo}
-              // onChange={(event) => {
-              //   setAlumniData({ ...alumniData, enrollNo: event.target.value });
-              // }}
-              // required
+              value={enroll}
             />
           </div>
           <div className='input-container form-group'>

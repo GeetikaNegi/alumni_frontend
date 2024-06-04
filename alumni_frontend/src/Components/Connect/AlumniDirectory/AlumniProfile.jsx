@@ -35,7 +35,7 @@ const AlumniProfile = (props) => {
     startDate: `Aug 2018`,
     endDate: `Till Now`,
   };
-  const [cookies] = useCookies(["accessToken"]);
+  const [cookies, setCookies] = useCookies(["accessToken"]);
 
   const collegeNames = ["IISE", "IISE LU", "FIeMITS"];
 
@@ -56,8 +56,10 @@ const AlumniProfile = (props) => {
 
   const handleDelete = async () => {
     const collegeId = prompt(`Are You Sure\nEnter Your College Id To Proceed`);
-    console.log(collegeId);
-    if (collegeId !== null) {
+    if (
+      collegeId !== null &&
+      collegeId === jwtDecode(cookies.accessToken).sub
+    ) {
       const toastId = toast.loading("Loading", {
         position: `bottom-right`,
         duration: 4000,
@@ -81,6 +83,7 @@ const AlumniProfile = (props) => {
             position: "bottom-right",
             duration: 4000,
           });
+          setCookies("accessToken", "", { expires: new Date() }, { path: "/" });
         } else {
           toast.error(`${response.data.status.message}`, {
             id: toastId,
@@ -91,6 +94,8 @@ const AlumniProfile = (props) => {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      console.log(typeof jwtDecode(cookies.accessToken).sub);
     }
   };
   const token = cookies.accessToken;
@@ -113,7 +118,6 @@ const AlumniProfile = (props) => {
     hey();
     const fetchAlumniOtherData = async () => {
       try {
-        console.log(`roll :${props.data.enroll_no}`);
         const response = await axios.get(
           "http://localhost:8080/api/v1/alumni/get-professional-profile/" +
             props.data.enroll_no
@@ -254,13 +258,18 @@ const AlumniProfile = (props) => {
               Actions
             </span>
             <div className='profile-actions '>
-              <button>
-                <a href='/post-opportunity'>Post an Opportunity</a>{" "}
-              </button>
-              <button>
-                <a href='/update-profile'>Edit Profile</a>
-              </button>
-              <button onClick={handleDelete}>Delete Account</button>
+              <a href='/post-opportunity' id='register'>
+                <button className='action-btn'> Post an Opportunity</button>
+              </a>{" "}
+              <a href='/update-profile'>
+                {" "}
+                <button>Edit Profile</button>
+              </a>
+              <a href='#'>
+                <button onClick={handleDelete} id='delBtn'>
+                  Delete Account
+                </button>
+              </a>
             </div>
           </div>
         )}

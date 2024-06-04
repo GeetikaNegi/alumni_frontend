@@ -86,15 +86,20 @@
     
   }
 
-.profile-actions>button {
+.profile-actions>a>button {
     font-size: 1.2vw;
     background: transparent;
     border-width: 2px;
-}
-.profile-actions>button:last-child {
-  color: #a60e0e;
-}
+    cursor: pointer;
 
+}
+#delBtn{
+  font-size: 1.2vw;
+    background: transparent;
+    border-width: 2px;
+    cursor: pointer;color: #a60e0e;
+}
+ 
 @media (max-width:600px) {
   .alumniprofile-card-font {
       font-size: 2.2vw;

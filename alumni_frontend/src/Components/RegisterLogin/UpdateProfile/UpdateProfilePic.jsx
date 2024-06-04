@@ -1,17 +1,34 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useCookies } from "react-cookie";
+import { jwtDecode } from "jwt-decode";
 
 import "../Register.css";
 import uploadBtn from "../../../Assets/svgs/upload-btn.svg";
 import userImg from "../../../Assets/svgs/user-image.svg";
 
-const UpdateProfilePic = ({ enroll }) => {
+const UpdateProfilePic = (props) => {
   const [file, setFile] = useState(null);
+  const [enroll, setEnroll] = useState();
+
+  const [cookies] = useCookies("accessToken");
+
   const [img, setImg] = useState({
-    placeHolder: userImg,
+    placeHolder:
+      "http://localhost:8080/api/v1/alumni/image?fileName=" + props.data,
     image: null,
   });
+
+  console.log(props.data);
+  useEffect(() => {
+    try {
+      const token = cookies.accessToken;
+      setEnroll(jwtDecode(token).sub);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const onFileChangeHandler = (event) => {
     const selectedFile = event.target.files[0];
@@ -50,7 +67,6 @@ const UpdateProfilePic = ({ enroll }) => {
         "http://localhost:8080/api/v1/alumni/uploadProfilePic/" + enroll,
         formData
       );
-      console.log(res);
       if (res.data.status.success) {
         toast.success(` ${res.data.status.message}`, {
           id: toastId,

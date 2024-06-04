@@ -1,29 +1,56 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useCookies } from "react-cookie";
+import { jwtDecode } from "jwt-decode";
 
-function UpdateSocialInfo({ onData, enroll }) {
-  console.log(enroll);
+function UpdateSocialInfo() {
+  const [cookies] = useCookies("accessToken");
+
   const [professionProfile, setProfessionalProfile] = useState({
-    enrollNo: enroll,
+    enrollNo: "",
     occupation: "",
     organisation: "",
-    linkedInUrl: "",
+    linked_url: "",
     about: "",
   });
 
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        const token = cookies.accessToken;
+        const enroll = jwtDecode(token).sub;
+        professionProfile.enrollNo = enroll;
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/alumni/get-professional-profile/" +
+            enroll
+        );
+        setProfessionalProfile(response.data.data);
+        // onData(response.data.data.profile_pic_name);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchProfile();
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("subd", professionProfile);
-    onData(true);
+    professionProfile.enrollNo = jwtDecode(cookies.accessToken).sub;
+    console.log(professionProfile);
     const toastId = toast.loading("Loading ...", {
       position: `bottom-right`,
       duration: 4000,
     });
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/alumni/register-prof",
-        professionProfile
+      const response = await axios.put(
+        "http://localhost:8080/api/v1/alumni/update-prof-profile",
+        professionProfile,
+        {
+          headers: {
+            Authorization: "Bearer " + cookies.accessToken,
+          },
+        }
       );
       console.log("Response", response);
       if (response.data.status.success) {
@@ -58,7 +85,7 @@ function UpdateSocialInfo({ onData, enroll }) {
             type='text'
             id='occupation'
             name='occupation'
-            value={professionProfile.companyName}
+            value={professionProfile.occupation}
             onChange={(event) => {
               setProfessionalProfile({
                 ...professionProfile,
@@ -92,7 +119,7 @@ function UpdateSocialInfo({ onData, enroll }) {
             type='text'
             id='linkedIn'
             name='linkedInUrl'
-            value={professionProfile.deadline}
+            value={professionProfile.linked_url}
             onChange={(event) => {
               setProfessionalProfile({
                 ...professionProfile,
@@ -108,7 +135,7 @@ function UpdateSocialInfo({ onData, enroll }) {
           <textarea
             id='my-description'
             name='about'
-            value={professionProfile.description}
+            value={professionProfile.about}
             onChange={(event) => {
               setProfessionalProfile({
                 ...professionProfile,
