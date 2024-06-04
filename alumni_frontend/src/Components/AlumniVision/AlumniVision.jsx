@@ -11,7 +11,6 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 export default function AlumniVision() {
-  const [viewProfile, setViewProfile] = useState(false);
   const [showBatchmates, setShowBatchmates] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [renderPopup, setRenderPopup] = useState(false);
@@ -37,7 +36,6 @@ export default function AlumniVision() {
 
   const handleClosePopup = () => {
     //THIS IS THE FN SENT AS PROP TO CLOSE POPUP fvf
-    setViewProfile(false);
     setRenderPopup(false);
     setShowBatchmates(false);
     setShowProfile(false);
@@ -68,6 +66,7 @@ export default function AlumniVision() {
 
   useEffect(() => {
     token = cookies.accessToken;
+    console.log(typeof cookies.accessToken);
     if (token === undefined) {
       console.log("if");
     } else {
@@ -92,6 +91,8 @@ export default function AlumniVision() {
       getAlumniToView();
     }
   }, []);
+
+  
 
   return (
     <div className='alumni-vision-color center-align-txt'>

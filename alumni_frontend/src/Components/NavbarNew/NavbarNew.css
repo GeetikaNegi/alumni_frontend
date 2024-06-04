@@ -40,24 +40,28 @@
 
   .inner_ul {
     display: flex;
-    gap: 3rem;
+    gap: 2.5rem;
     padding-right: 5rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
   }
   
   .inner_ul li {
    list-style: none; 
+   cursor: pointer;
   }
   
   .inner_ul li a {
     display: block;
     text-decoration: none;
     color: white;
-    padding: 0.5rem;
-    margin: 0 0.5rem;
+    padding: 0rem 0.5rem;
+    margin: 0.1rem 0.5rem;
     border-radius: 0.5rem;
+
   }
+
+  
   
   .inner_ul li a:not(.active):hover {
     background-color:#172554 ;

@@ -224,8 +224,8 @@ const AlumniProfile = (props) => {
               : "N/A"}
           </span>
           <span id='profile-heading2'>
-            {professionalData.occupation !== ""
-              ? professionalData.occupation
+            {professionalData.organisation !== ""
+              ? professionalData.organisation
               : "N/A"}
           </span>
         </div>

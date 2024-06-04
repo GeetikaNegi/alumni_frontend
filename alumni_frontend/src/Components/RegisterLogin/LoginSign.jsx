@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import MyPopup from "../Popup/MyPopup";
@@ -6,23 +6,17 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import ForgotPassword from "../RegisterLogin/PasswordForgot";
 import "./LoginSign.css";
-import Home from "../Home";
 
 function LoginSign() {
   const [cookies, setCookie] = useCookies(["myToken"]);
-  const [token, setToken] = useState("");
   const [viewProfile, setViewProfile] = useState(false);
   const [loginBody, setLoginBody] = useState({
     userId: "",
     password: "",
   });
   const navigate = useNavigate();
-  const [loginSuccess, setLoginSuccess] = useState(false);
   // const [action, setAction] = useState("Login");
 
-  const toggleSuccess = () => {
-    setLoginSuccess(true);
-  };
   const handleClosePopup = () => {
     //THIS IS THE FN SENT AS PROP TO CLOSE POPUP
     setViewProfile(false);
@@ -60,7 +54,6 @@ function LoginSign() {
           document.body.classList.remove("body-no-scroll");
 
           // console.log(`token ${response.data.data.token}`);
-          navigate("/");
         } else {
           toast.error(` ${response.data.data}`, {
             id: toastId,
@@ -68,7 +61,6 @@ function LoginSign() {
             duration: 4000,
           });
         }
-        console.log(response);
       } catch (error) {
         console.error("Error sending data:", error); // Log any
         toast.error(` Network Error`, {
@@ -86,6 +78,8 @@ function LoginSign() {
       });
     }
   };
+
+  useNavigate("/");
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;

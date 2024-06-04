@@ -1,4 +1,3 @@
-import Navbar from "./Components/LandingPage/Navbar/Navbar";
 import "./App.css";
 import Footer from "./Components/LandingPage/Footer/Footer";
 import Home from "./Components/Home";
@@ -17,12 +16,6 @@ import MyBatchmate from "./Components/Connect/AlumniDirectory/MyBatchmate";
 import UpdateProfileHome from "./Components/RegisterLogin/UpdateProfile/UpdateProfileHome";
 import Register from "./Components/RegisterLogin/Registration/Register";
 function App() {
-  const [viewProfile, setViewProfile] = useState(false);
-
-  const handleClosePopup = () => {
-    //THIS IS THE FN SENT AS PROP TO CLOSE POPUP
-    setViewProfile(false);
-  };
   return (
     <div className='App'>
       <NavbarNew />
