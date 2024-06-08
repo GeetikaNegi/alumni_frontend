@@ -1,8 +1,70 @@
-.mycards{
-    min-width: 300px;
-    max-width: 300px;
-    height: 400px;
-    background-color: rgb(66, 155, 229);
-    color: white;
-    margin: 10px;
+.team-cardss{
+  display: flex;
+  flex: wrap;
+  width: 40rem;
+  gap: 2rem;
+  width: initial;
+  justify-content: center;
+}
+
+
+.team-card{
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-style: oblique;
+  color: var(--palleteblue);
+  border: 2px solid black;
+  width: 15rem;
+  padding: 1vw;
+  background-color: bisque;
+  transition: background-color 1s linear;
+}
+
+
+.team-card img {
+  height: 18vw;
+  border-radius: 50%;
+  
+}
+.team-card:hover{
+  background-color: var(--thirdlightest);
+}
+
+
+button {
+  text-decoration: none; /* Remove underline */
+  color: #fff; /* Button text color (white) */
+  font-size: 14px; /* Adjust font size as needed */
+  font-weight: bold; /* Emphasize button */
+  padding: 8px 15px; /* Button padding */
+  border: none; /* Remove default button border */
+  border-radius: 3px; /* Rounded button corners */
+  background-color: #5da0e9; /* Primary button color (blue) */
+  cursor: pointer; /* Indicate clickable action */
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out; /* Smooth hover effect with slight scale */ /* Bonus feature */
+}
+
+button:hover {
+  background-color:#007bff ; /* Button hover background (darker blue) */
+  transform: scale(1.02); /* Slight scale on hover (optional) */ /* Bonus feature */
+}
+
+h1{
+  text-align: center;
+  color: var(--palleteblue);
+  font-family: cursive;
+  font-size: 2rem;
+}
+
+@media (max-width:600px){
+  .team-card{
+     width: 48vw;
+   }
+  .team-card img{
+    height: 45vw;
+  }
 }

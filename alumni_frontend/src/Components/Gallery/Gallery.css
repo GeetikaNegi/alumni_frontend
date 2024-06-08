@@ -1,76 +1,64 @@
-.navbar {
-  background-color: #f0f0f0;
-  padding: 10px;
+
+.div-container{
+  background-image: linear-gradient(30deg, #d6aa70, #EADBC8 );
+  color: var(--palleteblue);
+  font-family: cursive;
 }
 
-.nav-container {
+.upper-div{
+  text-align: center;
+  font-size: 3vw;
+  font-weight: 400;
+  padding-top: 2vw;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-content: space-around;
 }
 
-.nav-brand {
-  font-size: 20px;
-  font-weight: bold;
-}
 
-.nav-items {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.pic-container{
   display: flex;
+  gap: 2vw;
+  justify-content: center;
+  padding: 2vw;
+  flex-wrap: wrap;
 }
 
-.nav-item {
-  margin-right: 20px;
+.inner-container{
+  background-image: linear-gradient(270deg, #102c57, #0b6787);
+  width: min-content;
+  height: auto;
+  border-radius: 5%;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: black;
-  padding: 5px 10px;
+.inner-container:hover{
+  box-shadow: 0px 0px 5px #1a498e;
 }
 
-.nav-link:hover {
-  color: #333;
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropdown-indicator {
-  display: inline-block;
-  margin-left: 5px;
-  transform: translateY(-2px);
-  /* Adjust vertical alignment if needed */
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  list-style: none;
-  padding: 0;
-  display: none;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-menu {
+.inner-container span{
   display: block;
+  padding: 1vh
 }
 
-.dropdown-item {
-  padding: 10px;
+.inner-container img{
+  width: 15vw;
+  height: 15vw;
+  border-radius: 5%;
+  transition: 1s;
 }
 
-.dropdown-link {
-  text-decoration: none;
-  color: black;
+.title{
+  text-align: center;
+  text-wrap: pretty;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
 }
 
-.dropdown-link:hover {
-  background-color: #a61b1b;
+@media (max-width:480px) 
+{
+  .inner-container img{
+    height:18vw;
+    width: 18vw;
+     }
+  
 }
