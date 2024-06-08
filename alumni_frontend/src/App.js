@@ -6,7 +6,7 @@ import Aboutus from "./Components/About/Aboutus";
 import Ourteam from "./Components/About/Ourteam";
 import Batchmate from "./Components/Connect/Batchmate";
 import CollegeDirectory from "./Components/Connect/AlumniDirectory/CollegeDirectory";
-import Gallery from "./Components/Gallery/Gallery"; 
+import Gallery from "./Components/Gallery/Gallery";
 import { useState } from "react";
 import { NavbarNew } from "./Components/NavbarNew/NavbarNew";
 import OpportunityForm from "./Components/Career/Jobs/OpportunityForm";
@@ -15,7 +15,6 @@ import Internship from "./Components/Career/Jobs/Internship";
 import MyBatchmate from "./Components/Connect/AlumniDirectory/MyBatchmate";
 import UpdateProfileHome from "./Components/RegisterLogin/UpdateProfile/UpdateProfileHome";
 import Register from "./Components/RegisterLogin/Registration/Register";
-
 
 function App() {
   return (
@@ -30,7 +29,7 @@ function App() {
         <Route path='/jobs' element={<Showjobs />} />
         <Route path='/internship' element={<Internship />} />
 
-        <Route path='/gallery' element={<UpdateProfileHome />} />
+        <Route path='/gallery' element={<Gallery />} />
 
         <Route path='/post-opportunity' element={<OpportunityForm />} />
         <Route path='/my-upload' element={<uploadPic />} />
