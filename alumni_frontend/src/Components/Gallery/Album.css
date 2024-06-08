@@ -1,0 +1,47 @@
+.outer-album {
+    background-image: linear-gradient(30deg, #d6aa70, #EADBC8 );
+    /* margin: 18px; */
+}
+
+.lg-react-element {
+    column-count: 3;
+    column-gap: 1vw;
+    margin: 1vw;
+}
+
+.album-image {
+    max-width: 100%;
+    display: block;
+    padding: 5px 0px;
+    border-radius: 20px;
+    transition: transform 0.2s;
+}
+
+.album-image:hover {
+    filter: opacity(.9);
+    transform: scale(1.01);
+}
+
+button.back-btn{
+    margin-left: 92vw;
+    font-size: 1.2vw;
+    background-image: linear-gradient(270deg, #102c57, #0b6787);
+    border: 0.1vw solid var(--palleteblue);
+    cursor: pointer;
+    color: white;
+    margin-right: 1.5vh;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+@media (max-width:480px)
+{
+    .lg-react-element{
+        column-count: 2;
+    }
+
+    button.back-btn{
+        margin-left: 82vw;
+        font-size: 2.2vw;
+    }
+}

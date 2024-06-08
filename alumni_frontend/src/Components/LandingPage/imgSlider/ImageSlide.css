@@ -1,0 +1,18 @@
+.Image{ 
+    width:  calc(100%-2vw);
+    height:  80vh  ;
+    background-size:  cover  ;
+    background-repeat:  no-repeat  ;
+    /* Transition:  3s linear  ; */
+    z-index:  -100  ;
+    border: 1vw solid var(--thirdlightest);
+    /* border-image: linear-gradient(270deg, #d6aa70, #EADBC8) 10% / 1 / 0 stretch; */
+}
+
+
+@media (max-width: 480px){
+    .Image{
+        background-size: contain;
+    }
+}
+

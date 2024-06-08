@@ -1,83 +1,51 @@
-import React, { useState } from "react";
-import "./Gallery.css"; // Import your CSS file
+import React, { useState } from 'react'
+import { gallery } from './GalData'
+import '../Gallery/Gallery.css'
+import { Album } from './Album';
+
 
 function Gallery() {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const[toGallery,setToGallery]=useState(false);
+  const[eventId,setEventId]=useState(null);
 
-  const handleClick = () => {
-    setShowDropdown(!showDropdown);
+  const handleClickOnAlbum = (eventId) => {
+    console.log(`EventIdPasses: ${eventId}`)
+    const index=gallery.find((event)=> event.id === eventId);
+    console.log(`index: ${index}`)
+    setEventId(index);
+    setToGallery(true);
   };
 
-  const handleDocumentClick = (event) => {
-    if (event.target.className !== "nav-link") {
-      setShowDropdown(false);
+  console.log(`eventid; ${eventId}`)
+
+  if(toGallery)
+    {
+      return eventId && <Album data={eventId}/>
     }
-  };
 
-  document.addEventListener("click", handleDocumentClick);
 
   return (
-    <nav className='navbar'>
-      <div className='nav-container'>
-        <a href='#' className='nav-brand'>
-          {/* Add your brand name here */}
-        </a>
-        <ul className='nav-items'>
-          <li className='nav-item'>
-            <a href='#' className='nav-link'>
-              Home
-            </a>
-          </li>
-          <li className='nav-item'>
-            <a href='#' className='nav-link'>
-              About
-            </a>
-          </li>
-          <li className='nav-item'>
-            <a href='#' className='nav-link'>
-              Contact
-            </a>
-          </li>
-
-          <li className='nav-item'>
-            <a href='#' className='nav-link'>
-              Engage
-            </a>
-          </li>
-          <li className='nav-item'>
-            <a href='#' className='nav-link'>
-              Galleries
-            </a>
-          </li>
-          <li className='nav-item dropdown'>
-            <a href='#' className='nav-link' onClick={handleClick}>
-              News
-              <span className='dropdown-indicator'>⌄</span>
-            </a>
-            {showDropdown && (
-              <ul className='dropdown-menu'>
-                <li className='dropdown-item'>
-                  <a href='#' className='dropdown-link'>
-                    News & Stories
-                  </a>
-                </li>
-                <li className='dropdown-item'>
-                  <a href='#' className='dropdown-link'>
-                    Noticeboard
-                  </a>
-                </li>
-              </ul>
-            )}
-          </li>
-          <li className='nav-item'>
-            <a href='#' className='nav-link'>
-              Careers
-            </a>
-          </li>
-        </ul>
+    <div className="div-container">
+      <div className="upper-div">
+          <span>Picture Gallery</span>
+          <span>IISE Group of Institutions</span>
       </div>
-    </nav>
-  );
+      <div className="pic-container">
+        {
+          gallery.map((pic,index)=>(
+            <div
+            key={index}
+            className='inner-container'
+            onClick={()=>handleClickOnAlbum(pic.id)}
+            >
+              <img src={pic.img}/>
+              <span className='title'>{pic.title}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  )
 }
 
-export default Gallery;
+export default Gallery
