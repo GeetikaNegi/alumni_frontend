@@ -1,231 +1,226 @@
-  .upr_nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-image: linear-gradient(270deg, #102c57, #0b6787);
-    color: white;
+.upr_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(270deg, #102c57, #0b6787);
+  color: white;
+  position: sticky;
+  top: 0;
+  height: 4.5rem;
+}
+
+#logo{
+  height:8vw;
+  width: 100%;
+  display:flex;
+  transition: .3s;
+  position: relative;
+  z-index: 999;
+  border-radius:  50%;
+  margin-left: 5rem;
+}
+
+#logo{
+  display:flex;
+  height: 7vw;
+  width: 7vw;
+}
+
+#logo.sticky
+{
+  display:flex;
+  height: 85px;
+  width: 85px;
+  position:sticky;
+}
+
+.inner_ul {
+  display: flex;
+  gap: 3rem;
+  padding-right: 5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.inner_ul li {
+ list-style: none; 
+}
+
+.inner_ul li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.inner_ul li a:hover {
+  background-image: linear-gradient(30deg, #102c57, #0b6787);
+  color: var(--thirdlightest);
+  box-shadow: 0 0 10px var(--palleteblue);
+}
+
+.upr_nav .menu {
+  display: none;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 2.25rem;
+  height: 2rem;
+}
+
+.upr_nav .menu span {
+  height: 0.4rem;
+  width: 100%;
+  background-color: var(--thirdlightest);
+  border-radius: 0.2rem;
+}
+
+#top-img{
+  height:4.5vw;
+  width: 100%;
+  display:flex;
+  transition: .3s;
+}
+
+img.sticky{
+  box-shadow: 0px 5px 10px rgba(0,0,0,.6);
+  position:sticky;
+  top:0;
+  z-index: 100;
+}
+
+
+nav.sticky{
+  box-shadow: var(--palleteblue);
+  position:sticky;
+  top:50px;
+  z-index: 100;
+}
+
+#abc{
+display: none;
+flex-direction: column;
+}
+
+#career_submenu{
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  background-image: linear-gradient(270deg, #102c57, #0b6787);
+  padding: 0.5rem 0;
+}
+
+.nav-header{
+font-size: 10rem;
+font-weight: 600;
+}
+
+.downarr{
+display: inline-block;
+height: 1vw;
+width: 1vw;
+cursor: pointer;
+margin-top: .5vh;
+}
+
+#career_submenu.sticky{
+display: none;
+position: sticky;
+}
+
+@media (max-width: 480px) {
+
+  .upr_nav{
+    text-transform: uppercase;
+    height: 3rem;
     position: sticky;
-    top: 0;
-    height: 4.5rem;
   }
 
-  #logo{
-    height:8vw;
-    width: 100%;
-    display:flex;
-    transition: .3s;
-    position: relative;
-    z-index: 999;
-    border-radius:  50%;
-    margin-left: 5rem;
-  }
-
-  #logo{
-    display:flex;
-    height: 7vw;
-    width: 7vw;
-  }
-  
-  #logo.sticky
-  {
-    display:flex;
-    height: 85px;
-    width: 85px;
-    position:sticky;
-  }
-
-  .inner_ul {
-    display: flex;
-    gap: 2.5rem;
-    padding-right: 5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
-  
-  .inner_ul li {
-   list-style: none; 
-   cursor: pointer;
-  }
-  
-  .inner_ul li a {
-    display: block;
-    text-decoration: none;
-    color: white;
-    padding: 0rem 0.5rem;
-    margin: 0.1rem 0.5rem;
-    border-radius: 0.5rem;
-
-  }
-
-  
-  
-  .inner_ul li a:hover {
-    background-image: linear-gradient(30deg, #102c57, #0b6787);
-    color: var(--thirdlightest);
-    box-shadow: 0 0 10px var(--palleteblue);
-  }
-  
   .upr_nav .menu {
+      display: flex;
+      margin-top: -3.5px;
+  }
+
+  .upr_nav {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .upr_nav ul {
+      display: none;
+      flex-direction: column;
+      width: auto;
+      margin-bottom: 0.25rem;
+      position: relative;
+      background-image: linear-gradient(270deg, #102c57, #0b6787);
+      margin-top: -20px;
+      margin-left: auto;
+  }
+
+  .upr_nav ul.open {
+      display: flex;
+  }
+
+  .upr_nav ul li {
+      width: 100%;
+      text-align: center;
+  }
+
+  .upr_nav ul li a {
+      margin: 0.2rem 0.5rem;
+  }
+
+  .inner_ul{
+    gap: 0rem;
+  }
+
+  .main_menu{
     display: none;
-    position: absolute;
-    top: 0.75rem;
-    right: 0.5rem;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 2.25rem;
-    height: 2rem;
   }
-  
-  .upr_nav .menu span {
-    height: 0.4rem;
-    width: 100%;
-    background-color: var(--thirdlightest);
-    border-radius: 0.2rem;
+
+#career_submenu{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 17px;
+  left: 15vw;
+}
+
+  #logo{
+    margin-left: 1rem;
+    margin-top: -0.8rem;
+    height: 5rem;
+    width: 5rem;
   }
-  
+
   #top-img{
-    height:4.5vw;
-    width: 100%;
-    display:flex;
-    transition: .3s;
+    height: 9vw;
   }
-  
-  img.sticky{
-    box-shadow: 0px 5px 10px rgba(0,0,0,.6);
-    position:sticky;
-    top:0;
-    z-index: 100;
-  }
-  
 
   nav.sticky{
     box-shadow: var(--palleteblue);
     position:sticky;
-    top:50px;
+    top: 27px;
     z-index: 100;
   }
 
-  #abc{
-  display: none;
-  flex-direction: column;
-  }
-
-  #career_submenu{
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    background-image: linear-gradient(270deg, #102c57, #0b6787);
-    padding: 0.5rem 0;
-  }
-
-.nav-header{
-  font-size: 10rem;
-  font-weight: 600;
+  #logo.sticky
+{
+  display:flex;
+  height: 3.5rem;
+  width: 3.5rem;
+  position:sticky;
+  margin-top: -0.2rem;
 }
 
 .downarr{
-  display: inline-block;
-  height: 1vw;
-  width: 1vw;
-  cursor: pointer;
-  margin-top: .5vh;
+  height: 3vw;
+  width: 3vw;
 }
 
-#career_submenu.sticky{
-  display: none;
-  position: sticky;
 }
-  
-  @media (max-width: 480px) {
-
-    .upr_nav{
-      text-transform: uppercase;
-      height: 3rem;
-      position: sticky;
-    }
-
-    .upr_nav .menu {
-        display: flex;
-        margin-top: -3.5px;
-    }
-  
-    .upr_nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-  
-    .upr_nav ul {
-        display: none;
-        flex-direction: column;
-        width: auto;
-        margin-bottom: 0.25rem;
-        position: relative;
-        background-image: linear-gradient(270deg, #102c57, #0b6787);
-        margin-top: -20px;
-        margin-left: auto;
-    }
-  
-    .upr_nav ul.open {
-        display: flex;
-    }
-  
-    .upr_nav ul li {
-        width: 100%;
-        text-align: center;
-    }
-  
-    .upr_nav ul li a {
-        margin: 0.2rem 0.5rem;
-    }
-
-    .inner_ul{
-      gap: 0rem;
-    }
-
-    .main_menu{
-      display: none;
-    }
-
-  #career_submenu{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 17px;
-    left: 15vw;
-  }
-
-    #logo{
-      margin-left: 1rem;
-      margin-top: -0.8rem;
-      height: 5rem;
-      width: 5rem;
-    }
-
-    #top-img{
-      height: 9vw;
-    }
-  
-    nav.sticky{
-      box-shadow: var(--palleteblue);
-      position:sticky;
-      top: 27px;
-      z-index: 100;
-    }
-
-    #logo.sticky
-  {
-    display:flex;
-    height: 3.5rem;
-    width: 3.5rem;
-    position:sticky;
-    margin-top: -0.2rem;
-  }
-
-  .downarr{
-    height: 3vw;
-    width: 3vw;
-  }
-  
-}
-    
   
