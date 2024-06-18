@@ -53,7 +53,7 @@ function Showjobs() {
             duration: 4000,
           });
         }
-      } else console.log("in islse");
+      }
     };
 
     fetchData();

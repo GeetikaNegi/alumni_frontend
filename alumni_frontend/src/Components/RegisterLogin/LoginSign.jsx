@@ -52,6 +52,7 @@ function LoginSign() {
             { path: "/" }
           );
           document.body.classList.remove("body-no-scroll");
+          window.location.reload();
 
           // console.log(`token ${response.data.data.token}`);
         } else {
@@ -78,8 +79,6 @@ function LoginSign() {
       });
     }
   };
-
-  useNavigate("/");
 
   const handleChange = (event) => {
     const { name, value, type } = event.target;
