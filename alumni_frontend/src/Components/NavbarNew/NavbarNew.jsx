@@ -214,11 +214,7 @@ export const NavbarNew = () => {
               <NavLink to='/gallery'>Gallery</NavLink>
             </span>
           </li>
-          <li>
-            <span onClick={() => setMenuOpen(!menuOpen)}>
-              <NavLink to='/'>Login</NavLink>
-            </span>
-          </li>
+
           <li>
             {showLogout ? (
               <span
@@ -226,10 +222,12 @@ export const NavbarNew = () => {
                   setShowLogin(true);
                 }}
               >
-                Login
+                <NavLink>Login</NavLink>
               </span>
             ) : (
-              <span onClick={handleLogout}>Logout</span>
+              <span onClick={handleLogout}>
+                <NavLink>Logout</NavLink>
+              </span>
             )}
           </li>
         </ul>
