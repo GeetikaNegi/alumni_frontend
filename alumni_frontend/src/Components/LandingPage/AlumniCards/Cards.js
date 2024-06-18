@@ -1,8 +1,8 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
 import "./Cards.css";
-import f1 from '../../../Assets/f1.jpeg'
-import f2 from '../../../Assets/f2.jpeg'
+import f3 from '../../../Assets/f3.jpg'
+import f4 from '../../../Assets/f4.jpg'
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -13,53 +13,53 @@ const breakPoints = [
 
 const data=[
   {
-    name:'Geetika Negi',
-    img: f1,
+    name:'Aditya',
+    img: f4,
     com: 'TCS',
   },
   {
     name:'Ankush',
-    img: f2,
+    img: f3,
     com: 'TCS',
   },
   {
-    name:'Geetika Negi',
-    img: f1,
-    com: 'TCS',
-  },
-  {
-    name:'Ankush',
-    img: f2,
-    com: 'TCS',
-  },
-  {
-    name:'Geetika Negi',
-    img: f1,
+    name:'Aditya',
+    img: f4,
     com: 'TCS',
   },
   {
     name:'Ankush',
-    img: f2,
+    img: f3,
     com: 'TCS',
   },
   {
-    name:'Geetika Negi',
-    img: f1,
+    name:'Aditya',
+    img: f4,
     com: 'TCS',
   },
   {
-    name:'Geetika Negi',
-    img: f2,
+    name:'Ankush',
+    img: f3,
     com: 'TCS',
   },
   {
-    name:'Geetika Negi',
-    img: f1,
+    name:'Aditya',
+    img: f4,
     com: 'TCS',
   },
   {
-    name:'Geetika Negi',
-    img: f2,
+    name:'Aditya',
+    img: f3,
+    com: 'TCS',
+  },
+  {
+    name:'Aditya',
+    img: f4,
+    com: 'TCS',
+  },
+  {
+    name:'Aditya',
+    img: f3,
     com: 'TCS',
   },
 ]

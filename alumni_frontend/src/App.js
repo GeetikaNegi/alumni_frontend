@@ -1,7 +1,7 @@
 import "./App.css";
 import Footer from "./Components/LandingPage/Footer/Footer";
 import Home from "./Components/Home";
-import { /*BrowserRouter,*/ Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Aboutus from "./Components/About/Aboutus";
 import Ourteam from "./Components/About/Ourteam";
 import Batchmate from "./Components/Connect/Batchmate";
@@ -13,8 +13,8 @@ import OpportunityForm from "./Components/Career/Jobs/OpportunityForm";
 import Showjobs from "./Components/Career/Jobs/Showjobs";
 import Internship from "./Components/Career/Jobs/Internship";
 import MyBatchmate from "./Components/Connect/AlumniDirectory/MyBatchmate";
-import UpdateProfileHome from "./Components/RegisterLogin/UpdateProfile/UpdateProfileHome";
 import Register from "./Components/RegisterLogin/Registration/Register";
+import InvitationCard from "./Components/Event/InvitationCard";
 
 function App() {
   return (
@@ -36,7 +36,6 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/my-batchmate' element={<MyBatchmate />} />
       </Routes>
-
       <Footer />
     </div>
   );
